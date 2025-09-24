@@ -1,0 +1,14 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ],
+  "compilerOptions": {
+    "outDir": "dist",
+    "strict": false,
+    "noUnusedLocals": false,     // 关闭“未使用的局部变量”错误
+    "noUnusedParameters": false,  // 关闭“未使用的函数参数”错误
+    "strictNullChecks": false,
+  }
+}
