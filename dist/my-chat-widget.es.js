@@ -1583,7 +1583,7 @@ var _hoisted_1 = { class: "chatbot-button" }, _hoisted_2 = {
 		}, F = async () => {
 			s.value = !0, l.value = !0, y && y.abort(), y = new AbortController();
 			let e = A.value[0];
-			d.knowledge_filters.collection_id = window.DWFCHATCONFIG.getCollectionId();
+			d.knowledge_filters.collection_id = window.DWFCHATCONFIG.collectionId;
 			let r = {
 				message: c.value,
 				stream: !0,
@@ -12185,15 +12185,15 @@ function preventOverflow(e) {
 	};
 	if (T) {
 		if (s) {
-			var M = C === "y" ? "top" : left, N = C === "y" ? bottom : right, P = C === "y" ? "height" : "width", F = T[C], I = F + y[M], L = F - y[N], R = g ? -D[P] / 2 : 0, z = x === "start" ? E[P] : D[P], B = x === "start" ? -D[P] : -E[P], p7 = n.elements.arrow, V = g && p7 ? getLayoutRect(p7) : {
+			var M = C === "y" ? "top" : left, N = C === "y" ? bottom : right, P = C === "y" ? "height" : "width", F = T[C], I = F + y[M], L = F - y[N], R = g ? -D[P] / 2 : 0, z = x === "start" ? E[P] : D[P], B = x === "start" ? -D[P] : -E[P], h7 = n.elements.arrow, V = g && h7 ? getLayoutRect(h7) : {
 				width: 0,
 				height: 0
-			}, H = n.modifiersData["arrow#persistent"] ? n.modifiersData["arrow#persistent"].padding : getFreshSideObject(), U = H[M], W = H[N], G = within(0, E[P], V[P]), K = S ? E[P] / 2 - R - G - U - k.mainAxis : z - G - U - k.mainAxis, m7 = S ? -E[P] / 2 + R + G + W + k.mainAxis : B + G + W + k.mainAxis, q = n.elements.arrow && getOffsetParent(n.elements.arrow), J = q ? C === "y" ? q.clientTop || 0 : q.clientLeft || 0 : 0, h7 = A?.[C] ?? 0, Y = F + K - h7 - J, X = F + m7 - h7, g7 = within(g ? min$1(I, Y) : I, F, g ? max(L, X) : L);
-			T[C] = g7, j[C] = g7 - F;
+			}, H = n.modifiersData["arrow#persistent"] ? n.modifiersData["arrow#persistent"].padding : getFreshSideObject(), U = H[M], W = H[N], G = within(0, E[P], V[P]), K = S ? E[P] / 2 - R - G - U - k.mainAxis : z - G - U - k.mainAxis, g7 = S ? -E[P] / 2 + R + G + W + k.mainAxis : B + G + W + k.mainAxis, q = n.elements.arrow && getOffsetParent(n.elements.arrow), J = q ? C === "y" ? q.clientTop || 0 : q.clientLeft || 0 : 0, _7 = A?.[C] ?? 0, Y = F + K - _7 - J, X = F + g7 - _7, v7 = within(g ? min$1(I, Y) : I, F, g ? max(L, X) : L);
+			T[C] = v7, j[C] = v7 - F;
 		}
 		if (l) {
-			var Z = C === "x" ? "top" : left, _7 = C === "x" ? bottom : right, Q = T[w], $ = w === "y" ? "height" : "width", v7 = Q + y[Z], y7 = Q - y[_7], b7 = ["top", left].indexOf(b) !== -1, x7 = A?.[w] ?? 0, S7 = b7 ? v7 : Q - E[$] - D[$] - x7 + k.altAxis, C7 = b7 ? Q + E[$] + D[$] - x7 - k.altAxis : y7, w7 = g && b7 ? withinMaxClamp(S7, Q, C7) : within(g ? S7 : v7, Q, g ? C7 : y7);
-			T[w] = w7, j[w] = w7 - Q;
+			var Z = C === "x" ? "top" : left, y7 = C === "x" ? bottom : right, Q = T[w], $ = w === "y" ? "height" : "width", b7 = Q + y[Z], x7 = Q - y[y7], S7 = ["top", left].indexOf(b) !== -1, C7 = A?.[w] ?? 0, w7 = S7 ? b7 : Q - E[$] - D[$] - C7 + k.altAxis, T7 = S7 ? Q + E[$] + D[$] - C7 - k.altAxis : x7, E7 = g && S7 ? withinMaxClamp(w7, Q, T7) : within(g ? w7 : b7, Q, g ? T7 : x7);
+			T[w] = E7, j[w] = E7 - Q;
 		}
 		n.modifiersData[a] = j;
 	}
@@ -12812,7 +12812,7 @@ var _Popup = defineComponent({
 				return n.x > r.x && n.x < r.x + r.width && n.y > r.y && n.y < r.y + r.height;
 			}) || (K(n), M?.assertMouseLeave(n)));
 		}
-		function _7() {
+		function y7() {
 			k.value = !0, p.value && e.trigger === "hover" && q();
 		}
 		function Q(n) {
@@ -12820,7 +12820,7 @@ var _Popup = defineComponent({
 			(r = e.onOverlayClick) == null || r.call(e, { e: n });
 		}
 		var $ = inject("updateScrollTop", void 0);
-		function v7(n) {
+		function b7(n) {
 			var r, a = n.target, o = a.scrollTop, s = a.clientHeight, c = a.scrollHeight, l = debounce_default(function(n) {
 				return e.onScrollToBottom?.call(e, { e: n });
 			}, 100);
@@ -12842,7 +12842,7 @@ var _Popup = defineComponent({
 					r && { visibility: "hidden" }
 				],
 				onClick: Q,
-				onMouseenter: _7,
+				onMouseenter: y7,
 				onMouseleave: Z
 			}), [createVNode("div", {
 				class: [
@@ -12851,7 +12851,7 @@ var _Popup = defineComponent({
 					e.overlayInnerClassName
 				],
 				ref: w,
-				onScroll: v7
+				onScroll: b7
 			}, [n, e.showArrow && createVNode("div", {
 				class: `${N.value}__arrow`,
 				style: A.value
@@ -14341,7 +14341,7 @@ var TTabNav = defineComponent({
 			var a = r.value;
 			if (r.disabled || e.value === a) return !1;
 			e.onChange(a);
-		}, m7 = function(n) {
+		}, g7 = function(n) {
 			var r = n.e, a = n.value, o = n.index;
 			e.onRemove({
 				e: r,
@@ -14373,11 +14373,11 @@ var TTabNav = defineComponent({
 					onClick: function(e) {
 						return K(e, n);
 					},
-					onTabRemove: m7,
+					onTabRemove: g7,
 					onTabPanelRemove: n.onRemove
 				}, null);
 			});
-		}, g7 = function() {
+		}, v7 = function() {
 			return [createVNode("div", {
 				ref: _,
 				class: [`${n.value}__operations`, `${n.value}__operations--left`]
@@ -14435,7 +14435,7 @@ var TTabNav = defineComponent({
 				ref: m,
 				class: [`${n.value}__nav`],
 				style: j.value
-			}, [g7(), Z()]);
+			}, [v7(), Z()]);
 		};
 	}
 }), _Tabs = defineComponent({
@@ -14620,12 +14620,12 @@ var _Submenu = defineComponent({
 			},
 			closeParentPopup: function(e) {
 				var n = e.relatedTarget;
-				$(n) || y7(e);
+				$(n) || x7(e);
 			}
 		}));
 		var Z = function(e) {
 			isFunction_default(D) && D(e);
-		}, _7 = function() {
+		}, y7 = function() {
 			e.disabled || setTimeout(function() {
 				M.value || (S(e.value), nextTick().then(function() {
 					Z(B.value);
@@ -14635,12 +14635,12 @@ var _Submenu = defineComponent({
 			return e?.classList.contains(`${o.value}-menu__popup`);
 		}, $ = function(e) {
 			return e ? Q(e) || $(e.parentElement) : !1;
-		}, v7 = function(e) {
+		}, b7 = function(e) {
 			setTimeout(function() {
 				var n = Q(e.relatedTarget);
 				P.value || n || (M.value = !1);
 			}, 0);
-		}, y7 = function(e) {
+		}, x7 = function(e) {
 			var n = e.toElement, r = e.relatedTarget, a = n || r;
 			if (a !== V.value) {
 				for (var o = function(e) {
@@ -14648,18 +14648,18 @@ var _Submenu = defineComponent({
 				}; a !== null && a !== document && !o(a);) a = a.parentNode;
 				P.value = !1, o(a) || (M.value = !1), O?.(e);
 			}
-		}, b7 = function() {
+		}, S7 = function() {
 			P.value = !0;
-		}, x7 = function() {
+		}, C7 = function() {
 			e.disabled || S(e.value);
-		}, S7 = function(n) {
+		}, w7 = function(n) {
 			var r = "right-top";
 			!L.value && x && (r = "bottom-left");
 			var a = createVNode("div", {
 				ref: B,
 				class: [`${o.value}-menu__spacer`, `${o.value}-menu__spacer--${!L.value && x ? "top" : "left"}`],
-				onMouseenter: b7,
-				onMouseleave: y7
+				onMouseenter: S7,
+				onMouseleave: x7
 			}, [createVNode("ul", { class: `${o.value}-menu__popup-wrapper` }, [l("default", "content")])]);
 			return createVNode(Popup, mergeProps(e.popupProps ?? {}, {
 				overlayInnerClassName: _toConsumableArray(G.value),
@@ -14674,11 +14674,11 @@ var _Submenu = defineComponent({
 			} }, { content: function() {
 				return a;
 			} }));
-		}, C7 = function() {
+		}, T7 = function() {
 			var e = c("icon"), n = [createVNode("div", {
 				ref: H,
 				class: q.value,
-				onClick: x7
+				onClick: C7
 			}, [e, createVNode("span", { class: [`${o.value}-menu__content`] }, [c("title", { silent: !0 })])]), createVNode("ul", { style: "opacity: 0; width: 0; height: 0; overflow: hidden" }, [l("default", "content")])], r = k.value === "popup" && L.value, a = [
 				e,
 				createVNode("span", { class: [`${o.value}-menu__content`] }, [c("title", { silent: !0 })]),
@@ -14687,13 +14687,13 @@ var _Submenu = defineComponent({
 					overlayStyle: { transform: `rotate(${r ? -90 : 0}deg)` }
 				}, null)
 			];
-			return k.value === "normal" ? n : S7(a);
-		}, w7 = function() {
+			return k.value === "normal" ? n : w7(a);
+		}, E7 = function() {
 			for (var e = a.content || a.default, n = c("icon"), r = l("default", "content"), u = d.parent, f = 44; u && u.type.name !== "TMenu";) u.type.name === "TSubmenu" && (f += 16), u = u.parent;
 			var p = useCollapseAnimation(), m = p.beforeEnter, g = p.enter, _ = p.afterEnter, y = p.beforeLeave, b = p.leave, x = p.afterLeave, S = k.value === "popup" && L.value, C = [createVNode("div", {
 				ref: H,
 				class: q.value,
-				onClick: x7
+				onClick: C7
 			}, [
 				n,
 				createVNode("span", { class: [`${o.value}-menu__content`] }, [c("title", { silent: !0 })]),
@@ -14725,7 +14725,7 @@ var _Submenu = defineComponent({
 					}
 				}, null)
 			];
-			return k.value === "normal" ? C : S7(w);
+			return k.value === "normal" ? C : w7(w);
 		};
 		return watch(M, function(n) {
 			f.open(e.value, n ? "add" : "remove");
@@ -14749,9 +14749,9 @@ var _Submenu = defineComponent({
 		}), function() {
 			var e = null, n = {}, r;
 			return k.value === "popup" && (n = {
-				onMouseenter: _7,
-				onMouseleave: v7
-			}, _.value.length < 2 && (r = createVNode("div", { style: "display:none" }, [l("default", "content")]))), Object.keys(a).length > 0 && (e = x ? C7() : w7()), createVNode("li", mergeProps({ class: W.value }, n), [e, r]);
+				onMouseenter: y7,
+				onMouseleave: b7
+			}, _.value.length < 2 && (r = createVNode("div", { style: "display:none" }, [l("default", "content")]))), Object.keys(a).length > 0 && (e = x ? T7() : E7()), createVNode("li", mergeProps({ class: W.value }, n), [e, r]);
 		};
 	}
 });
@@ -15448,14 +15448,14 @@ var _Input = defineComponent({
 			BrowseIcon: browse_default,
 			BrowseOffIcon: browse_off_default,
 			CloseCircleFilledIcon: close_circle_filled_default
-		}), c = s.BrowseIcon, l = s.BrowseOffIcon, d = s.CloseCircleFilledIcon, f = useReadonly(), p = useDisabled(), m = usePrefixClass$1("input"), g = usePrefixClass$1("input__wrap"), _ = usePrefixClass$1("input__tips"), y = useCommonClassName(), b = y.STATUS, x = y.SIZE, S = usePrefixClass$1(), C = useTNodeJSX$1(), w = useInput(e, r), E = w.isHover, D = w.tStatus, O = w.inputRef, k = w.renderType, A = w.showClear, j = w.focused, M = w.inputValue, N = w.isComposition, P = w.compositionValue, F = w.innerValue, I = w.limitNumber, L = _objectWithoutProperties(w, _excluded$8), R = useInputWidth(e, O, F), z = R.inputPreRef, B = useInputEventHandler(e, E, N), p7 = computed(function() {
+		}), c = s.BrowseIcon, l = s.BrowseOffIcon, d = s.CloseCircleFilledIcon, f = useReadonly(), p = useDisabled(), m = usePrefixClass$1("input"), g = usePrefixClass$1("input__wrap"), _ = usePrefixClass$1("input__tips"), y = useCommonClassName(), b = y.STATUS, x = y.SIZE, S = usePrefixClass$1(), C = useTNodeJSX$1(), w = useInput(e, r), E = w.isHover, D = w.tStatus, O = w.inputRef, k = w.renderType, A = w.showClear, j = w.focused, M = w.inputValue, N = w.isComposition, P = w.compositionValue, F = w.innerValue, I = w.limitNumber, L = _objectWithoutProperties(w, _excluded$8), R = useInputWidth(e, O, F), z = R.inputPreRef, B = useInputEventHandler(e, E, N), h7 = computed(function() {
 			return e.placeholder ?? o.value.placeholder;
 		}), V = computed(function() {
 			var n = {
 				autofocus: e.autofocus,
 				disabled: p.value,
 				readonly: f.value,
-				placeholder: p7.value,
+				placeholder: h7.value,
 				name: e.name || void 0,
 				type: k.value,
 				autocomplete: e.autocomplete ?? (o.value.autocomplete || void 0),
@@ -15526,7 +15526,7 @@ var _Input = defineComponent({
 				e.autoWidth && createVNode("span", {
 					ref: z,
 					class: `${S.value}-input__input-pre`
-				}, [N.value ? P.value ?? "" : F.value || p7.value]),
+				}, [N.value ? P.value ?? "" : F.value || h7.value]),
 				y,
 				a ? createVNode("span", { class: [
 					`${m.value}__suffix`,
@@ -17691,97 +17691,97 @@ var useComponentClassName$1 = function() {
 				x: !0,
 				targetClassNameRegExp: RegExp(`^${W.value}-tag`)
 			}
-		})), q = K.getDragProps, J = useTagScroll(e), Y = J.scrollToRight, X = J.onWheel, g7 = J.scrollToRightOnEnter, Z = J.scrollToLeftOnLeave, _7 = J.tagInputRef, Q = J.isScrollable, $ = useTagList(reactive(_objectSpread$115(_objectSpread$115({}, toRefs(e)), {}, { getDragProps: q }))), v7 = $.tagValue, y7 = $.onInnerEnter, b7 = $.onInputBackspaceKeyUp, x7 = $.onInputBackspaceKeyDown, S7 = $.clearAll, C7 = $.renderLabel, w7 = $.onClose, T7 = computed(function() {
-			var n = !(isArray_default(v7.value) && v7.value.length);
+		})), q = K.getDragProps, J = useTagScroll(e), Y = J.scrollToRight, X = J.onWheel, v7 = J.scrollToRightOnEnter, Z = J.scrollToLeftOnLeave, y7 = J.tagInputRef, Q = J.isScrollable, $ = useTagList(reactive(_objectSpread$115(_objectSpread$115({}, toRefs(e)), {}, { getDragProps: q }))), b7 = $.tagValue, x7 = $.onInnerEnter, S7 = $.onInputBackspaceKeyUp, C7 = $.onInputBackspaceKeyDown, w7 = $.clearAll, T7 = $.renderLabel, E7 = $.onClose, D7 = computed(function() {
+			var n = !(isArray_default(b7.value) && b7.value.length);
 			return [s.value, _defineProperty$1(_defineProperty$1(_defineProperty$1(_defineProperty$1({}, l.value, P.value === "break-line"), `${W.value}-is-empty`, n), `${W.value}-tag-input--with-tag`, !n), `${W.value}-tag-input--drag-sort`, e.dragSort && !m.value && !p.value)];
-		}), E7 = computed(function() {
+		}), O7 = computed(function() {
 			var e;
-			return (e = v7.value) != null && e.length ? "" : I.value;
-		}), D7 = computed(function() {
-			return !!(!m.value && !p.value && F.value && R.value && (v7.value?.length || j.value));
-		}), O7 = function(e, n) {
+			return (e = b7.value) != null && e.length ? "" : I.value;
+		}), k7 = computed(function() {
+			return !!(!m.value && !p.value && F.value && R.value && (b7.value?.length || j.value));
+		}), A7 = function(e, n) {
 			var r, a;
 			(r = n.e) == null || (a = r.preventDefault) == null || a.call(r), M("", {
 				e: n.e,
 				trigger: "enter"
-			}), !H.value && y7(e, n), nextTick(function() {
+			}), !H.value && x7(e, n), nextTick(function() {
 				Y(), H.value = !1;
 			});
-		}, k7 = function(e, n) {
+		}, j7 = function(e, n) {
 			var r, a;
 			H.value = !0, (r = y.value) == null || (a = r.onCompositionstart) == null || a.call(r, e, n);
-		}, A7 = function(e, n) {
+		}, M7 = function(e, n) {
 			var r, a;
 			H.value = !1, (r = y.value) == null || (a = r.onCompositionend) == null || a.call(r, e, n);
-		}, j7 = function(n) {
+		}, N7 = function(n) {
 			var r, a;
-			p.value || (G.value = !0, (r = _7.value) == null || r.focus(), (a = e.onClick) == null || a.call(e, n));
-		}, M7 = function(n) {
+			p.value || (G.value = !0, (r = y7.value) == null || r.focus(), (a = e.onClick) == null || a.call(e, n));
+		}, P7 = function(n) {
 			var r;
-			S7(n), M("", {
+			w7(n), M("", {
 				e: n.e,
 				trigger: "clear"
 			}), (r = e.onClear) == null || r.call(e, n);
-		}, N7 = function(e) {
-			B(e), g7();
-		}, P7 = function(e) {
+		}, F7 = function(e) {
+			B(e), v7();
+		}, I7 = function(e) {
 			V(e), Z();
-		}, F7 = function(n, r) {
+		}, L7 = function(n, r) {
 			var a;
-			G.value || (G.value = !0, (a = e.onFocus) == null || a.call(e, v7.value, {
+			G.value || (G.value = !0, (a = e.onFocus) == null || a.call(e, b7.value, {
 				e: r.e,
 				inputValue: n
 			}));
-		}, I7 = function(n, r) {
+		}, R7 = function(n, r) {
 			var a;
 			G.value = !1, M("", {
 				e: r.e,
 				trigger: "blur"
-			}), (a = e.onBlur) == null || a.call(e, v7.value, {
+			}), (a = e.onBlur) == null || a.call(e, b7.value, {
 				e: r.e,
 				inputValue: n
 			});
-		}, L7 = function(e, n) {
+		}, z7 = function(e, n) {
 			M(e, _objectSpread$115(_objectSpread$115({}, n), {}, { trigger: "input" }));
 		};
 		return watch(function() {
 			return Q.value;
 		}, function(n) {
 			if (e.excessTagsDisplayType === "scroll") {
-				var r = `${W.value}-input__prefix`, a = _7.value.$el.querySelector(`.${r}`);
+				var r = `${W.value}-input__prefix`, a = y7.value.$el.querySelector(`.${r}`);
 				n ? a.classList.add(`${r}--scrollable`) : a.classList.remove(`${r}--scrollable`);
 			}
 		}), function() {
-			var e, n = D7.value ? createVNode(f, {
+			var e, n = k7.value ? createVNode(f, {
 				class: c.value,
-				onClick: M7
+				onClick: P7
 			}, null) : a("suffixIcon"), o = a("prefixIcon"), s = `${W.value}-tag-input__with-suffix-icon`;
-			n && !T7.value.includes(s) && T7.value.push(s);
+			n && !D7.value.includes(s) && D7.value.push(s);
 			var l = a("valueDisplay", { params: {
-				value: v7.value,
+				value: b7.value,
 				onClose: function(e) {
-					return w7({ index: e });
+					return E7({ index: e });
 				}
 			} }), u = a("label", { silent: !0 }), d = m.value || y.value?.readonly;
 			return createVNode(Input, mergeProps({
-				ref: _7,
+				ref: y7,
 				borderless: b.value,
 				readonly: d,
-				showInput: !d || !v7.value || !((e = v7.value) != null && e.length),
+				showInput: !d || !b7.value || !((e = b7.value) != null && e.length),
 				value: j.value,
 				autoWidth: !0,
 				size: x.value,
 				disabled: p.value,
 				label: function() {
-					return C7({
+					return T7({
 						displayNode: l,
 						label: u
 					});
 				},
-				class: T7.value,
+				class: D7.value,
 				tips: S.value,
 				status: C.value,
-				placeholder: E7.value,
+				placeholder: O7.value,
 				suffix: w.value,
 				suffixIcon: function() {
 					return n;
@@ -17791,18 +17791,18 @@ var useComponentClassName$1 = function() {
 				},
 				keepWrapperWidth: !D.value,
 				onWheel: X,
-				onChange: L7,
+				onChange: z7,
 				onPaste: O.value,
-				onEnter: O7,
-				onKeyup: b7,
-				onKeydown: x7,
-				onMouseenter: N7,
-				onMouseleave: P7,
-				onFocus: F7,
-				onBlur: I7,
-				onClick: j7,
-				onCompositionstart: k7,
-				onCompositionend: A7
+				onEnter: A7,
+				onKeyup: S7,
+				onKeydown: C7,
+				onMouseenter: F7,
+				onMouseleave: I7,
+				onFocus: L7,
+				onBlur: R7,
+				onClick: N7,
+				onCompositionstart: j7,
+				onCompositionend: M7
 			}, y.value), { suffix: r.suffix });
 		};
 	}
@@ -19433,7 +19433,7 @@ var _Select = defineComponent({
 					return c(e);
 				}) : c(n);
 			}
-			if (n !== k.value && (e.multiple && !e.reserveKeyword && r.trigger == "check" && w(""), A(n, _objectSpread$107({ selectedOptions: b7(n) }, r)), e.multiple && r.trigger === "uncheck" && r.option)) {
+			if (n !== k.value && (e.multiple && !e.reserveKeyword && r.trigger == "check" && w(""), A(n, _objectSpread$107({ selectedOptions: S7(n) }, r)), e.multiple && r.trigger === "uncheck" && r.option)) {
 				var l;
 				(l = e.onRemove) == null || l.call(e, {
 					value: get_default(r.option, N.value.value),
@@ -19445,10 +19445,10 @@ var _Select = defineComponent({
 			var a;
 			(a = e.onPopupVisibleChange) == null || a.call(e, n, r);
 		}, "popupVisible"), K = _slicedToArray$1(G, 2), q = K[0], J = K[1], Y = computed(function() {
-			return (!e.multiple && q.value && getSingleContent$1(F.value, _7.value, B7, L) || e.placeholder) ?? p(f.value.placeholder);
+			return (!e.multiple && q.value && getSingleContent$1(F.value, y7.value, H7, L) || e.placeholder) ?? p(f.value.placeholder);
 		}), X = computed(function() {
-			return e.multiple ? getMultipleContent$1(F.value, _7.value, B7, L) : getSingleContent$1(F.value, _7.value, B7, L);
-		}), g7 = computed(function() {
+			return e.multiple ? getMultipleContent$1(F.value, y7.value, H7, L) : getSingleContent$1(F.value, y7.value, H7, L);
+		}), v7 = computed(function() {
 			if (!e.multiple) return _objectSpread$107(_objectSpread$107({}, L.value.get(F.value)), {}, {
 				value: F.value,
 				label: X.value
@@ -19464,14 +19464,14 @@ var _Select = defineComponent({
 			return e.minCollapsedNum && isArray_default(F.value) ? _objectSpread$107(_objectSpread$107({}, r), {}, { displayValue: Array.isArray(n) ? n.slice(0, e.minCollapsedNum) : [] }) : r;
 		}), Z = computed(function() {
 			return !!(e.filterable || f.value.filterable || isFunction_default(e.filter));
-		}), _7 = computed(function() {
+		}), y7 = computed(function() {
 			return !!((e.filterable || f.value.filterable) && isFunction_default(e.onSearch));
 		}), Q = function(n, r) {
 			var a, o = r || {}, s = o.e, c = o.trigger, l = c === void 0 ? "tag-remove" : c;
 			s && s.stopPropagation();
 			var u = cloneDeep_default(F.value), d = u[n];
 			if (u.splice(n, 1), l === "backspace") {
-				for (var f, p = -1, m = n, g = x7(); m >= 0;) {
+				for (var f, p = -1, m = n, g = C7(); m >= 0;) {
 					var _;
 					if (!((_ = g[m]) != null && _.disabled)) {
 						p = m;
@@ -19497,7 +19497,7 @@ var _Select = defineComponent({
 				return;
 			}
 			l !== "clear" && W(u, {
-				selectedOptions: b7(u),
+				selectedOptions: S7(u),
 				trigger: l,
 				e: s
 			}), (a = e.onRemove) == null || a.call(e, {
@@ -19508,69 +19508,69 @@ var _Select = defineComponent({
 		}, $ = function() {
 			var n;
 			C.value && ((n = e.onCreate) == null || n.call(e, C.value), q.value || w(""));
-		}, v7 = computed(function() {
+		}, b7 = computed(function() {
 			return M.value?.popupRef.getOverlay();
-		}), y7 = computed(function() {
+		}), x7 = computed(function() {
 			return z.value.filter(function(e) {
 				return !e.disabled && !(e["check-all"] || e["check-all"] === "") && !e.checkAll && H(e);
 			});
-		}), b7 = function() {
+		}), S7 = function() {
 			var e = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : F.value;
 			return z.value.filter(function(n) {
 				if (!n.checkAll) return isArray_default(e) ? e.includes(n.value) : e === n.value;
 			});
-		}, x7 = function() {
+		}, C7 = function() {
 			var e = [], n = P.value ? k.value : F.value;
 			return (isArray_default(n) ? n : [n]).forEach(function(n) {
 				var r = L.value.get(P.value ? n.value : n);
 				r ? e.push(r) : e.push(P.value ? n : { value: n });
 			}), e;
-		}, S7 = function(n) {
+		}, w7 = function(n) {
 			if (e.multiple) {
 				var r = N.value.value, a = F.value.filter(function(e) {
 					return z.value.find(function(n) {
 						return n.value === e && n.disabled;
 					});
-				}), o = y7.value.map(function(e) {
+				}), o = x7.value.map(function(e) {
 					return e.value;
 				}), s = P.value ? k.value.map(function(e) {
 					return get_default(e, r);
 				}) : k.value, c = _toConsumableArray(n ? /* @__PURE__ */ new Set([].concat(_toConsumableArray(s), _toConsumableArray(o), _toConsumableArray(a))) : a);
 				W(c, {
-					selectedOptions: b7(c),
+					selectedOptions: S7(c),
 					trigger: n ? "check" : "clear"
 				});
 			}
-		}, C7 = computed(function() {
-			return k7.value === 0 ? !1 : k7.value === (_7.value ? U.value.length : y7.value.length);
-		}), w7 = useKeyboardControl({
+		}, T7 = computed(function() {
+			return j7.value === 0 ? !1 : j7.value === (y7.value ? U.value.length : x7.value.length);
+		}), E7 = useKeyboardControl({
 			displayOptions: V,
 			optionsList: z,
 			innerPopupVisible: q,
 			setInnerPopupVisible: J,
 			selectPanelRef: j,
 			isFilterable: Z,
-			isRemoteSearch: _7,
-			getSelectedOptions: b7,
+			isRemoteSearch: y7,
+			getSelectedOptions: S7,
 			setInnerValue: W,
-			onCheckAllChange: S7,
-			isCheckAll: C7,
+			onCheckAllChange: w7,
+			isCheckAll: T7,
 			innerValue: F,
-			popupContentRef: v7,
+			popupContentRef: b7,
 			multiple: e.multiple,
 			max: e.max
-		}), T7 = w7.hoverIndex, E7 = w7.virtualFilteredOptions, D7 = w7.handleKeyDown, O7 = w7.filteredOptions, k7 = computed(function() {
-			var e = y7.value.map(function(e) {
+		}), D7 = E7.hoverIndex, O7 = E7.virtualFilteredOptions, k7 = E7.handleKeyDown, A7 = E7.filteredOptions, j7 = computed(function() {
+			var e = x7.value.map(function(e) {
 				return e.value;
 			});
 			return intersection_default(F.value, e).length;
-		}), A7 = computed(function() {
-			return !C7.value && k7.value !== 0;
-		}), j7 = computed(function() {
+		}), M7 = computed(function() {
+			return !T7.value && j7.value !== 0;
+		}), N7 = computed(function() {
 			return {
 				max: e.max,
 				multiple: e.multiple,
-				hoverIndex: T7.value,
+				hoverIndex: D7.value,
 				selectValue: F.value,
 				reserveKeyword: e.reserveKeyword,
 				handleValueChange: W,
@@ -19578,17 +19578,17 @@ var _Select = defineComponent({
 				handlePopupVisibleChange: J,
 				handleCreate: $,
 				size: e.size,
-				popupContentRef: v7,
-				indeterminate: A7.value,
-				isCheckAll: C7.value,
-				onCheckAllChange: S7,
-				getSelectedOptions: b7,
+				popupContentRef: b7,
+				indeterminate: M7.value,
+				isCheckAll: T7.value,
+				onCheckAllChange: w7,
+				getSelectedOptions: S7,
 				displayOptions: V.value,
-				emitBlur: F7
+				emitBlur: L7
 			};
 		});
-		provide(selectInjectKey, j7);
-		var M7 = function() {
+		provide(selectInjectKey, N7);
+		var P7 = function() {
 			!e.multiple && isArray_default(k.value) && A(void 0, {
 				selectedOptions: [],
 				trigger: "default"
@@ -19596,22 +19596,22 @@ var _Select = defineComponent({
 				selectedOptions: [],
 				trigger: "default"
 			});
-		}, N7 = debounce_default(function(n, r) {
+		}, F7 = debounce_default(function(n, r) {
 			var a, o = r.e;
 			(a = e.onSearch) == null || a.call(e, `${n}`, { e: o });
-		}, 300), P7 = function(e, n) {
-			e && !q.value && J(!0, { e: n.e }), w(e), N7(`${e}`, { e: n.e }), nextTick(function() {
-				E7.value = j.value?.visibleData, O7.value = j.value?.displayOptions;
+		}, 300), I7 = function(e, n) {
+			e && !q.value && J(!0, { e: n.e }), w(e), F7(`${e}`, { e: n.e }), nextTick(function() {
+				O7.value = j.value?.visibleData, A7.value = j.value?.displayOptions;
 			});
-		}, F7 = function(n) {
+		}, L7 = function(n) {
 			var r;
 			(r = e.onBlur) == null || r.call(e, {
 				e: n,
 				value: F.value
 			});
-		}, I7 = function(e, n) {
+		}, R7 = function(e, n) {
 			J(e, n), e && n.trigger === "trigger-element-click" && w("");
-		}, L7 = /* @__PURE__ */ function() {
+		}, z7 = /* @__PURE__ */ function() {
 			var n = _asyncToGenerator(/* @__PURE__ */ _regeneratorRuntime.mark(function n(r) {
 				var a, o, s;
 				return _regeneratorRuntime.wrap(function(n) {
@@ -19631,7 +19631,7 @@ var _Select = defineComponent({
 			return function(e) {
 				return n.apply(this, arguments);
 			};
-		}(), R7 = function(n) {
+		}(), B7 = function(n) {
 			if (e.multiple) {
 				var r = [], a = _createForOfIteratorHelper$3(n || []), o;
 				try {
@@ -19651,15 +19651,15 @@ var _Select = defineComponent({
 			}
 		};
 		watch(k, function(e) {
-			M7(), nextTick(function() {
-				R7(e);
+			P7(), nextTick(function() {
+				B7(e);
 			});
 		}, { immediate: !0 }), watch(function() {
 			return e.multiple;
 		}, function() {
-			M7();
+			P7();
 		});
-		var z7 = function(e) {
+		var V7 = function(e) {
 			var n;
 			if (j.value) {
 				var r = (n = j.value) == null || (n = n.innerRef) == null ? void 0 : n.querySelector(`.${a.value}-is-selected`);
@@ -19670,13 +19670,13 @@ var _Select = defineComponent({
 					}
 				});
 			}
-		}, B7 = computed(function() {
-			return _7.value ? U.value : x7();
-		}), V7 = function() {
-			return c("valueDisplay", { params: g7.value }) || function() {
+		}, H7 = computed(function() {
+			return y7.value ? U.value : C7();
+		}), U7 = function() {
+			return c("valueDisplay", { params: v7.value }) || function() {
 				var n;
 				if (!(!e.multiple || e.selectInputProps?.multiple === !1)) return (n = F.value.slice(0, e.minCollapsedNum ? e.minCollapsedNum : F.value.length)).map?.call(n, function(n, r) {
-					var a = B7.value.find(function(e) {
+					var a = H7.value.find(function(e) {
 						if (e.value === n) return !0;
 					});
 					return createVNode(Tag, mergeProps({
@@ -19692,7 +19692,7 @@ var _Select = defineComponent({
 				});
 			}();
 		};
-		return provide("updateScrollTop", z7), function() {
+		return provide("updateScrollTop", V7), function() {
 			var n = e.popupProps || {}, a = n.overlayClassName, u = _objectWithoutProperties(n, _excluded$5);
 			return createVNode("div", { class: `${l.value}__wrap` }, [createVNode(SelectInput, mergeProps({
 				autoWidth: e.autoWidth,
@@ -19722,13 +19722,13 @@ var _Select = defineComponent({
 				inputProps: _objectSpread$107(_objectSpread$107({
 					size: e.size,
 					autofocus: e.autofocus
-				}, e.inputProps), {}, { onkeydown: D7 }),
+				}, e.inputProps), {}, { onkeydown: k7 }),
 				tagInputProps: _objectSpread$107({ size: e.size }, e.tagInputProps),
 				onTagChange: function(e, n) {
 					Q(n.index, n);
 				},
 				tagProps: _objectSpread$107({}, e.tagProps),
-				popupProps: _objectSpread$107(_objectSpread$107({ overlayClassName: [`${l.value}__dropdown`, a] }, u), {}, { onScrollToBottom: L7 }),
+				popupProps: _objectSpread$107(_objectSpread$107({ overlayClassName: [`${l.value}__dropdown`, a] }, u), {}, { onScrollToBottom: z7 }),
 				label: e.label,
 				prefixIcon: e.prefixIcon,
 				suffix: e.suffix,
@@ -19738,14 +19738,14 @@ var _Select = defineComponent({
 						isActive: q.value
 					}, null);
 				},
-				valueDisplay: V7,
-				onPopupVisibleChange: I7,
-				onInputChange: P7,
+				valueDisplay: U7,
+				onPopupVisibleChange: R7,
+				onInputChange: I7,
 				onClear: function(n) {
 					var r, a = n.e;
 					W(e.multiple ? [] : void 0, {
 						option: null,
-						selectedOptions: b7(e.multiple ? [] : void 0),
+						selectedOptions: S7(e.multiple ? [] : void 0),
 						trigger: "clear",
 						e: a
 					}), (r = e.onClear) == null || r.call(e, { e: a });
@@ -20045,7 +20045,7 @@ var _excluded$4 = ["pageCount"], min = 1, _Pagination = defineComponent({
 					} else r("update:modelValue", o);
 				}
 			}
-		}, g7 = function(n) {
+		}, v7 = function(n) {
 			({
 				prevPage: function() {
 					return X(p.value - 1);
@@ -20077,7 +20077,7 @@ var _excluded$4 = ["pageCount"], min = 1, _Pagination = defineComponent({
 					(c = e.onChange) == null || c.call(e, s);
 				}
 			}
-		}, _7 = function(e) {
+		}, y7 = function(e) {
 			var n = Math.trunc(+e);
 			isNaN_default(n) || (G.value = n, X(n));
 		};
@@ -20091,8 +20091,8 @@ var _excluded$4 = ["pageCount"], min = 1, _Pagination = defineComponent({
 					"onUpdate:modelValue": function(e) {
 						return G.value = e;
 					},
-					onBlur: _7,
-					onEnter: _7,
+					onBlur: y7,
+					onEnter: y7,
 					max: I.value,
 					min,
 					size: a,
@@ -20121,7 +20121,7 @@ var _excluded$4 = ["pageCount"], min = 1, _Pagination = defineComponent({
 				e.showPreviousAndNextBtn ? createVNode("div", {
 					class: L.preBtnClass.value,
 					onClick: function() {
-						return g7("prevPage");
+						return v7("prevPage");
 					}
 				}, [createVNode(A, null, null)]) : null,
 				e.showPageNumber && e.theme === "default" ? createVNode("ul", { class: L.btnWrapClass.value }, [
@@ -20134,7 +20134,7 @@ var _excluded$4 = ["pageCount"], min = 1, _Pagination = defineComponent({
 					K.value && B.value && J.value ? createVNode("li", {
 						class: L.btnMoreClass.value,
 						onClick: function() {
-							return g7("prevMorePage");
+							return v7("prevMorePage");
 						},
 						onMouseover: function() {
 							return z.value = !0;
@@ -20155,7 +20155,7 @@ var _excluded$4 = ["pageCount"], min = 1, _Pagination = defineComponent({
 					K.value && U.value && J.value ? createVNode("li", {
 						class: L.btnMoreClass.value,
 						onClick: function() {
-							return g7("nextMorePage");
+							return v7("nextMorePage");
 						},
 						onMouseover: function() {
 							return H.value = !0;
@@ -20175,7 +20175,7 @@ var _excluded$4 = ["pageCount"], min = 1, _Pagination = defineComponent({
 				e.showPreviousAndNextBtn ? createVNode("div", {
 					class: L.nextBtnClass.value,
 					onClick: function() {
-						return g7("nextPage");
+						return v7("nextPage");
 					}
 				}, [createVNode(j, null, null)]) : null,
 				e.showFirstAndLastPageBtn ? createVNode("div", {
@@ -25881,7 +25881,7 @@ var TSinglePanel = defineComponent({
 		function B(e) {
 			p.value = e;
 		}
-		function p7(e) {
+		function h7(e) {
 			m.value = e;
 		}
 		var V = computed(function() {
@@ -25908,7 +25908,7 @@ var TSinglePanel = defineComponent({
 				onConfirmClick: R,
 				onPresetClick: z,
 				onYearChange: B,
-				onMonthChange: p7,
+				onMonthChange: h7,
 				onTimePickerChange: L,
 				onPanelClick: function() {
 					var e, n;
@@ -28256,7 +28256,7 @@ var _FormItem = defineComponent({
 				}), n)) return n;
 			}
 		}, F = computed(function() {
-			if (!S7.value) return "";
+			if (!w7.value) return "";
 			if (H.value === ValidateStatus.SUCCESS) return e.successBorder ? [o.value.success, o.value.successBorder].join(" ") : o.value.success;
 			if (B.value.length) {
 				var n = B.value[0].type || "error";
@@ -28344,12 +28344,12 @@ var _FormItem = defineComponent({
 			return function(e) {
 				return n.apply(this, arguments);
 			};
-		}(), g7 = /* @__PURE__ */ function() {
+		}(), v7 = /* @__PURE__ */ function() {
 			var n = _asyncToGenerator(/* @__PURE__ */ _regeneratorRuntime.mark(function n(r, a) {
 				var o, s, c, l, u, d;
 				return _regeneratorRuntime.wrap(function(n) {
 					for (;;) switch (n.prev = n.next) {
-						case 0: return U.value = !0, x7.value = a, n.next = 1, X(r);
+						case 0: return U.value = !0, C7.value = a, n.next = 1, X(r);
 						case 1: return o = n.sent, s = o.successList, c = o.errorList, l = o.rules, u = o.resultList, d = o.allowSetValue, d && (V.value = s, B.value = c), l.length && (H.value = c.length ? ValidateStatus.FAIL : ValidateStatus.SUCCESS), W.value && G(), U.value = !1, n.abrupt("return", _defineProperty$1({}, e.name, c.length === 0 ? !0 : u));
 						case 2:
 						case "end": return n.stop();
@@ -28374,30 +28374,30 @@ var _FormItem = defineComponent({
 			return function(e) {
 				return n.apply(this, arguments);
 			};
-		}(), _7 = function(e) {
+		}(), y7 = function(e) {
 			!e && !isArray_default(e) || (e.length === 0 && (B.value = [], H.value = ValidateStatus.SUCCESS), B.value = e.map(function(e) {
 				return _objectSpread$82(_objectSpread$82({}, e), {}, { result: !1 });
 			}), H.value = ValidateStatus.FAIL);
 		}, Q = computed(function() {
 			return m?.data && get_default(m?.data, e.name);
-		}), $ = ref(void 0), v7 = toRefs(e), y7 = v7.name, b7 = reactive({
-			name: y7,
+		}), $ = ref(void 0), b7 = toRefs(e), x7 = b7.name, S7 = reactive({
+			name: x7,
 			resetHandler: G,
 			resetField: q,
-			validate: g7,
+			validate: v7,
 			validateOnly: Z,
-			setValidateMessage: _7
+			setValidateMessage: y7
 		});
 		onMounted(function() {
-			$.value = cloneDeep_default(Q.value), m?.children.push(b7);
+			$.value = cloneDeep_default(Q.value), m?.children.push(S7);
 		}), onBeforeUnmount(function() {
 			m && (m.children = m?.children.filter(function(e) {
-				return e !== b7;
+				return e !== S7;
 			}));
 		}), watch(Q, /* @__PURE__ */ _asyncToGenerator(/* @__PURE__ */ _regeneratorRuntime.mark(function e() {
 			return _regeneratorRuntime.wrap(function(e) {
 				for (;;) switch (e.prev = e.next) {
-					case 0: return e.next = 1, g7("change");
+					case 0: return e.next = 1, v7("change");
 					case 1:
 					case "end": return e.stop();
 				}
@@ -28405,28 +28405,28 @@ var _FormItem = defineComponent({
 		})), { deep: !0 }), watch(function() {
 			return [e.name, JSON.stringify(e.rules)].join(",");
 		}, function() {
-			g7("change");
+			v7("change");
 		});
-		var x7 = ref(void 0), S7 = computed(function() {
-			return isBoolean_default(x7.value) ? x7.value : isBoolean_default(e.showErrorMessage) ? e.showErrorMessage : m?.showErrorMessage;
-		}), C7 = computed(function() {
+		var C7 = ref(void 0), w7 = computed(function() {
+			return isBoolean_default(C7.value) ? C7.value : isBoolean_default(e.showErrorMessage) ? e.showErrorMessage : m?.showErrorMessage;
+		}), T7 = computed(function() {
 			return [
 				o.value.formItem,
 				getFormItemClassName(_.value, e.name),
-				_defineProperty$1(_defineProperty$1({}, o.value.formItemWithHelp, w7.value), o.value.formItemWithExtra, T7.value)
+				_defineProperty$1(_defineProperty$1({}, o.value.formItemWithHelp, E7.value), o.value.formItemWithExtra, D7.value)
 			];
-		}), w7 = computed(function() {
+		}), E7 = computed(function() {
 			var e = a("help");
 			return e ? createVNode("div", { class: o.value.help }, [e]) : null;
-		}), T7 = computed(function() {
+		}), D7 = computed(function() {
 			var e, n = function(e) {
 				return createVNode("div", {
 					class: o.value.extra,
 					title: e
 				}, [e]);
 			}, r = B.value;
-			return S7.value && r != null && (e = r[0]) != null && e.message ? n(r[0].message) : V.value.length ? n(V.value[0].message) : null;
-		}), E7 = computed(function() {
+			return w7.value && r != null && (e = r[0]) != null && e.message ? n(r[0].message) : V.value.length ? n(V.value[0].message) : null;
+		}), O7 = computed(function() {
 			var e = a("tips");
 			if (!e) return null;
 			var n = [
@@ -28440,7 +28440,7 @@ var _FormItem = defineComponent({
 			var e = _asyncToGenerator(/* @__PURE__ */ _regeneratorRuntime.mark(function e() {
 				return _regeneratorRuntime.wrap(function(e) {
 					for (;;) switch (e.prev = e.next) {
-						case 0: return e.next = 1, g7("blur");
+						case 0: return e.next = 1, v7("blur");
 						case 1:
 						case "end": return e.stop();
 					}
@@ -28450,14 +28450,14 @@ var _FormItem = defineComponent({
 				return e.apply(this, arguments);
 			};
 		}() }), function() {
-			return createVNode("div", { class: C7.value }, [j(), createVNode("div", {
+			return createVNode("div", { class: T7.value }, [j(), createVNode("div", {
 				class: I.value,
 				style: L.value
 			}, [
 				createVNode("div", { class: o.value.controlsContent }, [a("default"), P()]),
-				w7.value,
 				E7.value,
-				T7.value
+				O7.value,
+				D7.value
 			])]);
 		};
 	}
@@ -29400,7 +29400,7 @@ var useSliderInput = function(e) {
 				vertical: T.value,
 				prefixName: r.value
 			};
-		}), X = useSliderMark(Y), g7 = computed(function() {
+		}), X = useSliderMark(Y), v7 = computed(function() {
 			return {
 				max: e.max,
 				min: e.min,
@@ -29410,7 +29410,7 @@ var useSliderInput = function(e) {
 				vertical: T.value,
 				disabled: n.value
 			};
-		}), Z = useSliderInput(g7), _7 = function() {
+		}), Z = useSliderInput(v7), y7 = function() {
 			var n = B(x.value), a = function(e) {
 				x.value = B(e);
 			}, o = B(S.value), s = function(e) {
@@ -29423,11 +29423,11 @@ var useSliderInput = function(e) {
 			]);
 		}, Q = function(e) {
 			C.value = e;
-		}, $ = toRefs(e), v7 = $.min, y7 = $.max, b7 = $.step;
+		}, $ = toRefs(e), b7 = $.min, x7 = $.max, S7 = $.step;
 		return provide(sliderPropsInjectKey, reactive({
-			min: v7,
-			max: y7,
-			step: b7,
+			min: b7,
+			max: x7,
+			step: S7,
 			dragging: C,
 			toggleDragging: Q,
 			precision: L,
@@ -29498,7 +29498,7 @@ var useSliderInput = function(e) {
 					}, null);
 				})]),
 				X(J)
-			])]), U.value && e.inputNumberProps && _7()]);
+			])]), U.value && e.inputNumberProps && y7()]);
 		};
 	}
 }), Slider = withInstall$1(_Slider), SliderButton = withInstall$1(_SliderButton), props$50 = {
@@ -29793,7 +29793,7 @@ var _Textarea = defineComponent({
 		}), onMounted(function() {
 			j();
 		});
-		var g7 = useTNodeJSX$1();
+		var v7 = useTNodeJSX$1();
 		return function() {
 			var n = getValidAttrs({
 				onFocus: H,
@@ -29803,7 +29803,7 @@ var _Textarea = defineComponent({
 				onKeypress: V
 			}), a = useCommonClassName(), d = a.STATUS, f = computed(function() {
 				return [`${s.value}__inner`, _defineProperty$1(_defineProperty$1(_defineProperty$1(_defineProperty$1({}, `${o.value}-is-${X.value}`, X.value), d.value.disabled, b.value), d.value.focused, D.value), `${o.value}-resize-none`, _typeof$1(e.autosize) === "object")];
-			}), p = g7("tips"), m = p && createVNode("div", { class: `${c.value} ${s.value}__tips--${e.status || "normal"}` }, [p]), g = e.maxcharacter && createVNode("span", { class: l.value }, [`${q.value}/${e.maxcharacter}`]) || !e.maxcharacter && e.maxlength && createVNode("span", { class: l.value }, [`${_.value ? String(_.value)?.length : 0}/${e.maxlength}`]);
+			}), p = v7("tips"), m = p && createVNode("div", { class: `${c.value} ${s.value}__tips--${e.status || "normal"}` }, [p]), g = e.maxcharacter && createVNode("span", { class: l.value }, [`${q.value}/${e.maxcharacter}`]) || !e.maxcharacter && e.maxlength && createVNode("span", { class: l.value }, [`${_.value ? String(_.value)?.length : 0}/${e.maxlength}`]);
 			return createVNode("div", mergeProps({ class: G.value }, omit_default(r, ["style"])), [createVNode("textarea", mergeProps({
 				onInput: F,
 				onCompositionstart: I,
@@ -30496,7 +30496,7 @@ var _Transfer = defineComponent({
 				type: n,
 				movedValue: o
 			});
-		}, p7 = function() {
+		}, h7 = function() {
 			B(TARGET);
 		}, V = function() {
 			B(SOURCE);
@@ -30572,7 +30572,7 @@ var _Transfer = defineComponent({
 					leftDisabled: I.value.target || C.value || O.value.target.length === 0,
 					rightDisabled: I.value.source || w.value || O.value.source.length === 0,
 					operation: e.operation,
-					onMoveToRight: p7,
+					onMoveToRight: h7,
 					onMoveToLeft: V
 				}, { operation: r.operation }),
 				K(TARGET)
@@ -32252,14 +32252,14 @@ var _TreeSelect = defineComponent({
 	setup: function(e, n) {
 		var r = n.slots, a = n.expose, o = useTNodeJSX$1(), s = useTNodeDefault(), c = usePrefixClass$1(), l = useConfig("treeSelect"), d = l.globalConfig, f = useDisabled(), p = useReadonly(), m = ref(null), g = ref([]), _ = ref([]), y = ref(null), b = ref(0), x = toRefs(e), S = x.value, C = x.modelValue, w = x.popupVisible, E = x.inputValue, D = useVModel$1(S, C, e.defaultValue, e.onChange), O = _slicedToArray$1(D, 2), k = O[0], A = O[1], j = useDefaultValue(w, !1, e.onPopupVisibleChange, "popupVisible"), M = _slicedToArray$1(j, 2), P = M[0], F = M[1], I = useDefaultValue(E, e.defaultInputValue, e.onInputChange, "inputValue"), L = _slicedToArray$1(I, 2), R = L[0], z = L[1], B = function() {
 			var n = function(n) {
-				return findParentValues(e.data, n, Z.value, _7.value);
+				return findParentValues(e.data, n, Z.value, y7.value);
 			}, r = [];
 			k.value && (Array.isArray(k.value) && e.multiple ? r = k.value.flatMap(n) : !Array.isArray(k.value) && !e.multiple && (r = n(k.value))), _.value = Array.from(/* @__PURE__ */ new Set([].concat(_toConsumableArray(_.value), _toConsumableArray(r))));
 		};
 		watch(k, /* @__PURE__ */ _asyncToGenerator(/* @__PURE__ */ _regeneratorRuntime.mark(function n() {
 			return _regeneratorRuntime.wrap(function(n) {
 				for (;;) switch (n.prev = n.next) {
-					case 0: return n.next = 1, T7();
+					case 0: return n.next = 1, D7();
 					case 1: e.multiple || (g.value = y.value ? [y.value.value] : []), B();
 					case 2:
 					case "end": return n.stop();
@@ -32270,8 +32270,8 @@ var _TreeSelect = defineComponent({
 		}, /* @__PURE__ */ _asyncToGenerator(/* @__PURE__ */ _regeneratorRuntime.mark(function e() {
 			return _regeneratorRuntime.wrap(function(e) {
 				for (;;) switch (e.prev = e.next) {
-					case 0: return e.next = 1, T7();
-					case 1: A7();
+					case 0: return e.next = 1, D7();
+					case 1: M7();
 					case 2:
 					case "end": return e.stop();
 				}
@@ -32312,7 +32312,7 @@ var _TreeSelect = defineComponent({
 			return !isEmpty_default(e.treeProps) && !isEmpty_default(e.treeProps.keys) ? e.treeProps.keys.label || "label" : e.keys?.label || "label";
 		}), Z = computed(function() {
 			return !isEmpty_default(e.treeProps) && !isEmpty_default(e.treeProps.keys) ? e.treeProps.keys.value || "value" : e.keys?.value || "value";
-		}), _7 = computed(function() {
+		}), y7 = computed(function() {
 			return !isEmpty_default(e.treeProps) && !isEmpty_default(e.treeProps.keys) ? e.treeProps.keys.children || "children" : e.keys?.children || "children";
 		});
 		onMounted(/* @__PURE__ */ _asyncToGenerator(/* @__PURE__ */ _regeneratorRuntime.mark(function n() {
@@ -32320,7 +32320,7 @@ var _TreeSelect = defineComponent({
 				for (;;) switch (n.prev = n.next) {
 					case 0: B(), !k.value && e.defaultValue && Q(e.defaultValue, null, "uncheck"), K.value ? g.value = isArray_default(k.value) ? k.value.map(function(e) {
 						return e?.value;
-					}) : [k.value?.value] : g.value = isArray_default(k.value) ? k.value : [k.value], T7();
+					}) : [k.value?.value] : g.value = isArray_default(k.value) ? k.value : [k.value], D7();
 					case 1:
 					case "end": return n.stop();
 				}
@@ -32330,27 +32330,27 @@ var _TreeSelect = defineComponent({
 			A(e, {
 				node: n,
 				trigger: r
-			}), T7();
+			}), D7();
 		}, $ = function(n) {
 			var r, a = e.multiple ? [] : "";
 			g.value = [], Q(a, null, "clear"), (r = e.onClear) == null || r.call(e, { e: n.e });
-		}, v7 = function(e, n) {
+		}, b7 = function(e, n) {
 			var r = e;
-			K.value && (r = e.map(O7)), Q(r, n.node, "check");
-		}, y7 = function(n, r) {
+			K.value && (r = e.map(A7)), Q(r, n.node, "check");
+		}, x7 = function(n, r) {
 			if (e.multiple || F(!1, r), !(e.multiple || !r.node.actived) && k.value !== r.node.data[Z.value]) {
 				var a = n;
 				if (K.value) {
 					var o = isEmpty_default(n) ? "" : n[0];
-					a = O7(o);
+					a = A7(o);
 				} else a = isEmpty_default(n) ? "" : n[0];
 				Q(a, r.node, "check"), g.value = n;
 			}
-		}, b7 = function(e) {
+		}, S7 = function(e) {
 			_.value = e;
-		}, x7 = function() {
-			T7();
-		}, S7 = function(n) {
+		}, C7 = function() {
+			D7();
+		}, w7 = function(n) {
 			var r;
 			if (!P.value) {
 				var a;
@@ -32358,20 +32358,20 @@ var _TreeSelect = defineComponent({
 				return;
 			}
 			z(n), (r = e.onSearch) == null || r.call(e, String(n));
-		}, C7 = function(n, r) {
+		}, T7 = function(n, r) {
 			var a, o = r.trigger, s = r.index;
 			["tag-remove", "backspace"].includes(o) && isArray_default(k.value) && k.value.splice(s, 1), (a = e.onRemove) == null || a.call(e, {
 				value: n,
 				data: null,
 				e: r && r.e
 			}), Q(k.value, null, o);
-		}, w7 = function(e, n) {
+		}, E7 = function(e, n) {
 			F(e, n), e && n.trigger === "trigger-element-click" && z("");
-		}, T7 = /* @__PURE__ */ function() {
+		}, D7 = /* @__PURE__ */ function() {
 			var n = _asyncToGenerator(/* @__PURE__ */ _regeneratorRuntime.mark(function n() {
 				return _regeneratorRuntime.wrap(function(n) {
 					for (;;) switch (n.prev = n.next) {
-						case 0: e.multiple ? e.multiple ? isArray_default(k.value) ? y.value = D7() : y.value = [] : y.value = null : k.value || k.value === 0 ? y.value = E7() : y.value = "";
+						case 0: e.multiple ? e.multiple ? isArray_default(k.value) ? y.value = k7() : y.value = [] : y.value = null : k.value || k.value === 0 ? y.value = O7() : y.value = "";
 						case 1:
 						case "end": return n.stop();
 					}
@@ -32380,15 +32380,15 @@ var _TreeSelect = defineComponent({
 			return function() {
 				return n.apply(this, arguments);
 			};
-		}(), E7 = function() {
+		}(), O7 = function() {
 			var e = K.value ? k.value.value : k.value;
-			return O7(e);
-		}, D7 = function() {
+			return A7(e);
+		}, k7 = function() {
 			return k.value.map(function(e) {
 				var n = K.value ? e.value : e;
-				return O7(n);
+				return A7(n);
 			});
-		}, O7 = function(n) {
+		}, A7 = function(n) {
 			if (m.value) {
 				var r = m.value.getItem(n);
 				if (r) return _objectSpread$67(_objectSpread$67({}, r.data), {}, {
@@ -32396,26 +32396,26 @@ var _TreeSelect = defineComponent({
 					value: r.data[Z.value]
 				});
 			}
-			return k7(e.data, n) || {
+			return j7(e.data, n) || {
 				label: n,
 				value: n
 			};
-		}, k7 = function(e, n) {
+		}, j7 = function(e, n) {
 			for (var r = 0, a = e.length; r < a; r++) {
 				var o = e[r];
 				if (o[Z.value] === n) return _objectSpread$67(_objectSpread$67({}, o), {}, {
 					label: o[X.value],
 					value: o[Z.value]
 				});
-				if (o != null && o[_7.value]) {
-					var s = k7(o?.[_7.value], n);
+				if (o != null && o[y7.value]) {
+					var s = j7(o?.[y7.value], n);
 					if (!isNil_default(s)) return s;
 				}
 			}
 			return null;
-		}, A7 = function() {
+		}, M7 = function() {
 			b.value += 1;
-		}, j7 = function() {
+		}, N7 = function() {
 			return withDirectives(createVNode(Tree, mergeProps({
 				ref: m,
 				key: b.value,
@@ -32432,15 +32432,15 @@ var _TreeSelect = defineComponent({
 				actived: g.value,
 				expanded: _.value,
 				activeMultiple: e.multiple,
-				onChange: v7,
-				onActive: y7,
-				onExpand: b7,
-				onLoad: x7,
+				onChange: b7,
+				onActive: x7,
+				onExpand: S7,
+				onLoad: C7,
 				expandOnClickNode: !1
 			}, e.treeProps), { empty: function() {
 				return s("empty", { defaultNode: createVNode("div", { class: `${c.value}-select__empty` }, [d.value.empty]) });
 			} }), [[vShow, !e.loading]]);
-		}, M7 = function() {
+		}, P7 = function() {
 			return createVNode(FakeArrow, {
 				isActive: P.value,
 				disabled: e.disabled,
@@ -32473,7 +32473,7 @@ var _TreeSelect = defineComponent({
 				},
 				suffix: e.suffix,
 				suffixIcon: function() {
-					return e.suffixIcon || r.suffixIcon ? o("suffixIcon") : M7();
+					return e.suffixIcon || r.suffixIcon ? o("suffixIcon") : P7();
 				},
 				onClear: $,
 				onBlur: function(n, r) {
@@ -32497,7 +32497,7 @@ var _TreeSelect = defineComponent({
 							var n = y.value.map(function(e) {
 								return e.value;
 							});
-							C7(n, {
+							T7(n, {
 								trigger: "tag-remove",
 								index: e,
 								item: n[e]
@@ -32505,16 +32505,16 @@ var _TreeSelect = defineComponent({
 						}
 					} : { value: y.value || _defineProperty$1(_defineProperty$1({}, X.value, ""), Z.value, void 0) } });
 				},
-				onInputChange: S7,
-				onTagChange: C7,
-				onPopupVisibleChange: w7
+				onInputChange: w7,
+				onTagChange: T7,
+				onPopupVisibleChange: E7
 			}, e.selectInputProps), {
 				suffix: r.suffix,
 				panel: function() {
 					return createVNode("div", { class: [`${c.value}-select__dropdown-inner`, `${c.value}-select__dropdown-inner--size-${G.value}`] }, [
 						o("panelTopContent"),
 						withDirectives(createVNode("p", { class: [`${c.value}-select-loading-tips`, `${c.value}-select__right-icon-polyfill`] }, [s("loadingText", { defaultNode: createVNode("div", { class: `${c.value}-select__empty` }, [d.value.loadingText]) })]), [[vShow, e.loading && !H.value]]),
-						j7(),
+						N7(),
 						o("panelBottomContent")
 					]);
 				},
@@ -36797,7 +36797,7 @@ var key$1 = 1, _Dialog = defineComponent({
 		}, K = function() {
 			var n;
 			(n = e.onBeforeClose) == null || n.call(e);
-		}, m7 = function() {
+		}, g7 = function() {
 			var n, r, a;
 			(n = c.value) == null || (r = n.resetPosition) == null || r.call(n), (a = e.onClosed) == null || a.call(e);
 		}, q = function(r) {
@@ -36852,7 +36852,7 @@ var key$1 = 1, _Dialog = defineComponent({
 					onBeforeEnter: W,
 					onAfterEnter: G,
 					onBeforeLeave: K,
-					onAfterLeave: m7
+					onAfterLeave: g7
 				}, { default: function() {
 					return [X.value && withDirectives(createVNode("div", mergeProps({
 						class: d,
@@ -37297,38 +37297,38 @@ var downloadFile = function(e) {
 			return formatImages(e.images);
 		}), Z = computed(function() {
 			return X.value[x.value] ?? { mainImage: "" };
-		}), _7 = usePopupManager("dialog", { visible: T }), Q = _7.isTopInteractivePopup, $ = function() {
+		}), y7 = usePopupManager("dialog", { visible: T }), Q = y7.isTopInteractivePopup, $ = function() {
 			var e = x.value - 1;
 			Y(), S(e < 0 ? 0 : e, { trigger: "prev" });
-		}, v7 = function() {
+		}, b7 = function() {
 			var e = x.value + 1;
 			Y(), S(e >= X.value.length ? x.value : e, { trigger: "next" });
-		}, y7 = function(e) {
+		}, x7 = function(e) {
 			S(e, { trigger: "current" });
-		}, b7 = function(n) {
-			e.onDownload ? e.onDownload(n) : downloadFile(n);
-		}, x7 = function() {
-			D(!0);
 		}, S7 = function(n) {
+			e.onDownload ? e.onDownload(n) : downloadFile(n);
+		}, C7 = function() {
+			D(!0);
+		}, w7 = function(n) {
 			var r;
 			D(!1), (r = e.onClose) == null || r.call(e, n);
-		}, C7 = function(e) {
-			S7({
+		}, T7 = function(e) {
+			w7({
 				e,
 				trigger: "close-btn"
 			});
-		}, w7 = function(n) {
-			e.closeOnOverlay && S7({
+		}, E7 = function(n) {
+			e.closeOnOverlay && w7({
 				e: n,
 				trigger: "overlay"
 			});
-		}, T7 = function(n) {
+		}, D7 = function(n) {
 			switch (n.stopPropagation(), n.code) {
 				case EVENT_CODE.left:
 					$();
 					break;
 				case EVENT_CODE.right:
-					v7();
+					b7();
 					break;
 				case EVENT_CODE.up:
 					V();
@@ -37337,29 +37337,29 @@ var downloadFile = function(e) {
 					H();
 					break;
 				case EVENT_CODE.esc:
-					e.closeOnEscKeydown && Q() && S7({
+					e.closeOnEscKeydown && Q() && w7({
 						e: n,
 						trigger: "esc"
 					});
 					break;
 				default: break;
 			}
-		}, E7 = ref();
+		}, O7 = ref();
 		watch(function() {
 			return T.value;
 		}, function(e) {
 			clearTimeout(k.value), e ? (O.value = !1, nextTick().then(function() {
 				var e, n;
-				(e = E7.value) == null || (n = e.focus) == null || n.call(e);
+				(e = O7.value) == null || (n = e.focus) == null || n.call(e);
 			}), Y()) : k.value = setTimeout(function() {
 				O.value = !0;
 			}, 200);
 		});
-		var D7 = function(e) {
+		var k7 = function(e) {
 			e.preventDefault(), e.deltaY > 0 ? H() : V();
-		}, O7 = computed(function() {
+		}, A7 = computed(function() {
 			return { transform: `translateX(calc(-${x.value} * (40px / 9 * 16 + 4px)))` };
-		}), k7 = function() {
+		}), j7 = function() {
 			return createVNode("div", { class: M.value }, [createVNode(TImageViewerIcon, {
 				icon: function() {
 					return createVNode(chevron_down_default, null, null);
@@ -37368,7 +37368,7 @@ var downloadFile = function(e) {
 				onClick: P
 			}, null), createVNode("div", { class: `${o.value}__header-prev` }, [createVNode("div", {
 				class: `${o.value}__header-trans`,
-				style: O7.value
+				style: A7.value
 			}, [X.value.map(function(e, r) {
 				return createVNode("div", {
 					key: r,
@@ -37378,30 +37378,30 @@ var downloadFile = function(e) {
 					error: "",
 					class: `${o.value}__header-img`,
 					onClick: function() {
-						return y7(r);
+						return x7(r);
 					}
 				}, null)]);
 			})])])]);
-		}, A7 = function(e) {
+		}, M7 = function(e) {
 			var n = c("navigationArrow", createVNode(chevron_left_default, {
 				style: { transform: `rotate(${e === "prev" ? 0 : 180}deg)` },
 				size: "24px"
 			}, null));
 			return createVNode(TImageViewerIcon, {
 				class: `${o.value}__modal-${e}-bt`,
-				onClick: e === "prev" ? $ : v7,
+				onClick: e === "prev" ? $ : b7,
 				icon: function() {
 					return n;
 				}
 			}, null);
-		}, j7 = function() {
+		}, N7 = function() {
 			if (e.closeBtn !== !1) return createVNode("div", {
 				class: [`${o.value}__modal-icon`, `${o.value}__modal-close-bt`],
-				onClick: C7
+				onClick: T7
 			}, [c("closeBtn", createVNode(close_default, { size: "24px" }, null))]);
 		};
 		return function() {
-			return e.mode === "modeless" ? createVNode(Fragment, null, [c("trigger", { params: { open: x7 } }), createVNode(TImageViewerModal, {
+			return e.mode === "modeless" ? createVNode(Fragment, null, [c("trigger", { params: { open: C7 } }), createVNode(TImageViewerModal, {
 				zIndex: N.value,
 				visible: T.value,
 				index: x.value,
@@ -37415,43 +37415,43 @@ var downloadFile = function(e) {
 				onZoomOut: H,
 				onMirror: L,
 				onReset: Y,
-				onClose: S7,
-				onDownload: b7,
+				onClose: w7,
+				onDownload: S7,
 				draggable: e.draggable,
 				showOverlay: d.value,
 				title: e.title,
 				imageReferrerpolicy: _.value
-			}, null)]) : createVNode(Fragment, null, [c("trigger", { params: { open: x7 } }), createVNode(Teleport, {
+			}, null)]) : createVNode(Fragment, null, [c("trigger", { params: { open: C7 } }), createVNode(Teleport, {
 				disabled: !e.attach || !A.value,
 				to: A.value
 			}, { default: function() {
 				return [createVNode(Transition, null, { default: function() {
 					return [(T.value || !O.value) && withDirectives(createVNode("div", {
-						ref: E7,
+						ref: O7,
 						class: j.value,
 						style: { zIndex: N.value },
-						onWheel: D7,
+						onWheel: k7,
 						tabindex: -1,
-						onKeydown: T7
+						onKeydown: D7
 					}, [
 						!!d.value && createVNode("div", {
 							class: `${o.value}__modal-mask`,
-							onClick: w7
+							onClick: E7
 						}, null),
 						X.value.length > 1 && createVNode(Fragment, null, [
-							k7(),
+							j7(),
 							createVNode("div", { class: `${o.value}__modal-index` }, [e.title && c("title"), `${x.value + 1}/${X.value.length}`]),
-							A7("prev"),
-							A7("next")
+							M7("prev"),
+							M7("next")
 						]),
-						j7(),
+						N7(),
 						createVNode(TImageViewerUtils, {
 							onZoomIn: V,
 							onZoomOut: H,
 							onMirror: L,
 							onReset: Y,
 							onRotate: K,
-							onDownload: b7,
+							onDownload: S7,
 							scale: B.value,
 							currentImage: Z.value
 						}, null),
@@ -38629,7 +38629,7 @@ var defaultNavigation = {
 					return H({ source: "click" });
 				}
 			}, [createVNode(d, null, null)])]) : null;
-		}, m7 = function() {
+		}, g7 = function() {
 			if (isVNode(e.navigation)) return e.navigation;
 			var n = o("navigation");
 			if (n && isVNode(n?.[0])) return n;
@@ -38677,7 +38677,7 @@ var defaultNavigation = {
 					class: `${a.value}-swiper__container`,
 					style: M.value
 				}, [q()])]),
-				m7(),
+				g7(),
 				K()
 			])]);
 		};
@@ -39481,7 +39481,7 @@ function useFixed(e, n, r, a) {
 				k.left === o && k.right === a || (k.left = o && R.value, k.right = a && L.value);
 			}
 		}
-	}, g7 = function(e) {
+	}, v7 = function(e) {
 		for (var n = 0; n < e.length; n++) for (var r = e[n], a = 0, o = r.length; a < o; a++) {
 			var s = r[a], c = r[a + 1], l = s.parent;
 			(!l || l?.lastLeftFixedCol) && s.col.fixed === "left" && c?.col.fixed !== "left" && (s.lastLeftFixedCol = !0);
@@ -39490,7 +39490,7 @@ function useFixed(e, n, r, a) {
 		}
 	}, Z = function() {
 		var e = U(s.value), n = e.newColumnsMap, r = e.levelNodes;
-		g7(r);
+		v7(r);
 		var a = setTimeout(function() {
 			var e;
 			(I.value || (e = d.value) != null && e.length) && J(C.value, n), clearTimeout(a);
@@ -39498,7 +39498,7 @@ function useFixed(e, n, r, a) {
 		return function() {
 			clearTimeout(a);
 		};
-	}, _7 = function() {
+	}, y7 = function() {
 		var e = setTimeout(function() {
 			if (C.value) {
 				w.value = C.value.scrollHeight > C.value.clientHeight, T.value = C.value.scrollWidth > C.value.clientWidth;
@@ -39519,40 +39519,40 @@ function useFixed(e, n, r, a) {
 			var o = E == null || (n = E.value) == null ? void 0 : n.getBoundingClientRect();
 			o != null && o.width && Q(o.width);
 		}
-	}, v7 = function() {
+	}, b7 = function() {
 		var e, n, r, o, s, c, l, u;
 		(e = a.paginationAffixRef.value) == null || (n = e.handleScroll) == null || n.call(e), (r = a.horizontalScrollAffixRef.value) == null || (o = r.handleScroll) == null || o.call(r), (s = a.headerTopAffixRef.value) == null || (c = s.handleScroll) == null || c.call(s), (l = a.footerBottomAffixRef.value) == null || (u = l.handleScroll) == null || u.call(l);
-	}, y7 = function(e) {
+	}, x7 = function(e) {
 		for (var n = {}, r = 0, a = e.length; r < a; r++) for (var o = e[r].children, s = 0, c = o.length; s < c; s++) {
 			var l = o[s], u = l.dataset.colkey;
 			n[u] = l.getBoundingClientRect().width;
 		}
 		return n;
-	}, b7 = function(e) {
+	}, S7 = function(e) {
 		if (e instanceof HTMLCollection) {
 			if (B.value) return;
-			F.value = y7(e);
+			F.value = x7(e);
 		} else F.value = F.value || {}, Object.entries(e).forEach(function(e) {
 			var n = _slicedToArray$1(e, 2), r = n[0], a = n[1];
 			F.value[r] = a;
 		});
 		return F.value;
-	}, x7 = function() {
+	}, C7 = function() {
 		var e = setTimeout(function() {
 			if ($(), !V.value) {
 				var n = C.value?.querySelector("thead");
-				n && (b7(n.children), clearTimeout(e));
+				n && (S7(n.children), clearTimeout(e));
 			}
 		}, 0);
-	}, S7 = function() {
+	}, w7 = function() {
 		F.value = {};
-	}, C7 = function(n) {
+	}, T7 = function(n) {
 		var r, a, o;
 		(r = e.onScrollX) == null || r.call(e, { e: n }), (a = e.onScrollY) == null || a.call(e, { e: n }), (o = e.onScroll) == null || o.call(e, { e: n });
-	}, w7 = function(e) {
+	}, E7 = function(e) {
 		if (e === "calculate") {
 			var n, r = (n = C.value) == null || (n = n.querySelector("thead")) == null ? void 0 : n.children;
-			return r ? y7(r) : {};
+			return r ? x7(r) : {};
 		}
 		return F.value || {};
 	};
@@ -39579,9 +39579,9 @@ function useFixed(e, n, r, a) {
 		v,
 		C
 	], function() {
-		C.value && _7();
+		C.value && y7();
 	}, { immediate: !0 }), watch(r, function() {
-		S7();
+		w7();
 	}), watch([
 		x,
 		v,
@@ -39593,7 +39593,7 @@ function useFixed(e, n, r, a) {
 		l
 	], function() {
 		var e = setTimeout(function() {
-			x7(), v7(), clearTimeout(e);
+			C7(), b7(), clearTimeout(e);
 		}, 60);
 	}, { immediate: !0 }), watch([r], function(e, n) {
 		var r = _slicedToArray$1(e, 1), a = r[0], o = _slicedToArray$1(n, 1), s = o[0], c = a.map(function(e) {
@@ -39602,7 +39602,7 @@ function useFixed(e, n, r, a) {
 			return e.colKey;
 		});
 		if (c.length < l.length) {
-			var u = xorWith_default(l, c), d = w7("calculate"), f = 0;
+			var u = xorWith_default(l, c), d = E7("calculate"), f = 0;
 			u.forEach(function(e) {
 				f += d[e];
 			});
@@ -39613,25 +39613,25 @@ function useFixed(e, n, r, a) {
 			Q(Math.max(g, _));
 		}
 	});
-	var T7 = function() {
-		x7(), _7(), v7(), (I.value || w.value) && (Z(), X(C.value, { skipScrollLimit: !0 })), c.value === "auto" && b7(w7("calculate"));
-	}, E7 = debounce_default(function() {
-		T7();
-	}, 30), D7 = null;
-	function O7(e) {
-		typeof window > "u" || getIEVersion() < 11 || window.ResizeObserver === void 0 || (off(window, "resize", E7), D7 = new window.ResizeObserver(function() {
+	var D7 = function() {
+		C7(), y7(), b7(), (I.value || w.value) && (Z(), X(C.value, { skipScrollLimit: !0 })), c.value === "auto" && S7(E7("calculate"));
+	}, O7 = debounce_default(function() {
+		D7();
+	}, 30), k7 = null;
+	function A7(e) {
+		typeof window > "u" || getIEVersion() < 11 || window.ResizeObserver === void 0 || (off(window, "resize", O7), k7 = new window.ResizeObserver(function() {
 			var e = setTimeout(function() {
-				T7(), clearTimeout(e);
+				D7(), clearTimeout(e);
 			}, 200);
-		}), D7.observe(e), S.value = e);
+		}), k7.observe(e), S.value = e);
 	}
 	return onMounted(function() {
-		D.value = getScrollbarWidthWithCSS(), x7();
+		D.value = getScrollbarWidthWithCSS(), C7();
 		var e = I.value || w.value || !V.value || !x.value.length, n = typeof window < "u" && window.ResizeObserver !== void 0;
-		(e && getIEVersion() < 11 || !n) && on(window, "resize", E7);
+		(e && getIEVersion() < 11 || !n) && on(window, "resize", O7);
 	}), onBeforeUnmount(function() {
 		var e, n;
-		typeof window < "u" && off(window, "resize", E7), (e = D7) == null || e.unobserve(S.value), (n = D7) == null || n.disconnect();
+		typeof window < "u" && off(window, "resize", O7), (e = k7) == null || e.unobserve(S.value), (n = k7) == null || n.disconnect();
 	}), {
 		tableWidth: M,
 		tableElmWidth: P,
@@ -39647,17 +39647,17 @@ function useFixed(e, n, r, a) {
 		setData: function(e) {
 			x.value = e;
 		},
-		refreshTable: T7,
+		refreshTable: D7,
 		setTableElmWidth: Q,
-		emitScrollEvent: C7,
-		updateThWidthListHandler: x7,
+		emitScrollEvent: T7,
+		updateThWidthListHandler: C7,
 		updateColumnFixedShadow: X,
 		setUseFixedTableElmRef: H,
-		getThWidthList: w7,
-		updateThWidthList: b7,
-		addTableResizeObserver: O7,
+		getThWidthList: E7,
+		updateThWidthList: S7,
+		addTableResizeObserver: A7,
 		updateTableAfterColumnResize: function() {
-			Z(), _7();
+			Z(), y7();
 		}
 	};
 }
@@ -40864,53 +40864,53 @@ var _BaseTable = defineComponent({
 			horizontalScrollAffixRef: B,
 			headerTopAffixRef: V,
 			footerBottomAffixRef: H
-		}), W = U.scrollbarWidth, G = U.tableWidth, K = U.tableElmWidth, q = U.tableContentRef, J = U.isFixedHeader, Y = U.isWidthOverflow, X = U.isFixedColumn, g7 = U.thWidthList, Z = U.showColumnShadow, _7 = U.rowAndColFixedPosition, Q = U.setData, $ = U.refreshTable, v7 = U.setTableElmWidth, y7 = U.emitScrollEvent, b7 = U.setUseFixedTableElmRef, x7 = U.updateColumnFixedShadow, S7 = U.getThWidthList, C7 = U.updateThWidthList, w7 = U.addTableResizeObserver, T7 = U.updateTableAfterColumnResize, E7 = useAffix(e), D7 = E7.affixHeaderRef, O7 = E7.affixFooterRef, k7 = E7.horizontalScrollbarRef, A7 = E7.paginationRef, j7 = E7.showAffixHeader, M7 = E7.showAffixFooter, N7 = E7.showAffixPagination, P7 = E7.onHorizontalScroll, F7 = E7.setTableContentRef, I7 = E7.updateAffixHeaderOrFooter, L7 = usePagination(e, n, q), R7 = L7.dataSource, z7 = L7.innerPagination, B7 = L7.isPaginateData, V7 = L7.renderPagination, H7 = useColumnResize({
+		}), W = U.scrollbarWidth, G = U.tableWidth, K = U.tableElmWidth, q = U.tableContentRef, J = U.isFixedHeader, Y = U.isWidthOverflow, X = U.isFixedColumn, v7 = U.thWidthList, Z = U.showColumnShadow, y7 = U.rowAndColFixedPosition, Q = U.setData, $ = U.refreshTable, b7 = U.setTableElmWidth, x7 = U.emitScrollEvent, S7 = U.setUseFixedTableElmRef, C7 = U.updateColumnFixedShadow, w7 = U.getThWidthList, T7 = U.updateThWidthList, E7 = U.addTableResizeObserver, D7 = U.updateTableAfterColumnResize, O7 = useAffix(e), k7 = O7.affixHeaderRef, A7 = O7.affixFooterRef, j7 = O7.horizontalScrollbarRef, M7 = O7.paginationRef, N7 = O7.showAffixHeader, P7 = O7.showAffixFooter, F7 = O7.showAffixPagination, I7 = O7.onHorizontalScroll, L7 = O7.setTableContentRef, R7 = O7.updateAffixHeaderOrFooter, z7 = usePagination(e, n, q), B7 = z7.dataSource, V7 = z7.innerPagination, H7 = z7.isPaginateData, U7 = z7.renderPagination, W7 = useColumnResize({
 			isWidthOverflow: Y,
 			tableContentRef: q,
 			showColumnShadow: Z,
-			getThWidthList: S7,
-			updateThWidthList: C7,
-			setTableElmWidth: v7,
-			updateTableAfterColumnResize: T7,
+			getThWidthList: w7,
+			updateThWidthList: T7,
+			setTableElmWidth: b7,
+			updateTableAfterColumnResize: D7,
 			onColumnResizeChange: e.onColumnResizeChange
-		}), U7 = H7.resizeLineRef, W7 = H7.resizeLineStyle, G7 = H7.setEffectColMap, K7 = computed(function() {
+		}), G7 = W7.resizeLineRef, K7 = W7.resizeLineStyle, q7 = W7.setEffectColMap, J7 = computed(function() {
 			return [S.value, _defineProperty$1(_defineProperty$1(_defineProperty$1(_defineProperty$1(_defineProperty$1(_defineProperty$1(_defineProperty$1(_defineProperty$1({}, y.headerFixed, J.value), y.columnFixed, X.value), y.widthOverflow, Y.value), y.multipleHeader, j.value), b.leftShadow, Z.left), b.rightShadow, Z.right), y.columnResizableTable, e.resizable), `${m}-table__row--active-${e.activeRowType}`, e.activeRowType)];
-		}), q7 = computed(function() {
-			return [[_[e.tableLayout]]];
-		}), J7 = computed(function() {
-			return e.bordered && J.value && (j.value && Y.value || !j.value);
 		}), Y7 = computed(function() {
+			return [[_[e.tableLayout]]];
+		}), X7 = computed(function() {
+			return e.bordered && J.value && (j.value && Y.value || !j.value);
+		}), Z7 = computed(function() {
 			if (!e.bordered) return 0;
-			var n = d.value?.getBoundingClientRect(), r = A7.value?.getBoundingClientRect();
+			var n = d.value?.getBoundingClientRect(), r = M7.value?.getBoundingClientRect();
 			return (n?.height || 0) + (r?.height || 0);
-		}), X7 = useRowHighlight(e, s), Z7 = X7.tActiveRow, Q7 = X7.onHighlightRow, $7 = X7.addHighlightKeyboardListener, e9 = X7.removeHighlightKeyboardListener, t9 = useHoverKeyboardEvent(e, s), n9 = t9.hoverRow, r9 = t9.needKeyboardRowHover, i9 = t9.clearHoverRow, a9 = t9.addRowHoverKeyboardListener, o9 = t9.removeRowHoverKeyboardListener, s9 = t9.tableRefTabIndex;
+		}), Q7 = useRowHighlight(e, s), $7 = Q7.tActiveRow, e9 = Q7.onHighlightRow, t9 = Q7.addHighlightKeyboardListener, n9 = Q7.removeHighlightKeyboardListener, r9 = useHoverKeyboardEvent(e, s), i9 = r9.hoverRow, a9 = r9.needKeyboardRowHover, o9 = r9.clearHoverRow, s9 = r9.addRowHoverKeyboardListener, c9 = r9.removeRowHoverKeyboardListener, l9 = r9.tableRefTabIndex;
 		watch(c, function() {
-			b7(c.value);
+			S7(c.value);
 		}), watch(function() {
-			return [e.data, R7];
+			return [e.data, B7];
 		}, function() {
-			Q(B7.value ? R7.value : e.data);
+			Q(H7.value ? B7.value : e.data);
 		}), watch(M, function() {
 			var n;
-			(n = e.onLeafColumnsChange) == null || n.call(e, M.value.leafColumns), G7(M.value.leafColumns, null);
+			(n = e.onLeafColumnsChange) == null || n.call(e, M.value.leafColumns), q7(M.value.leafColumns, null);
 		}, { immediate: !0 });
-		var c9 = function() {
+		var u9 = function() {
 			nextTick(function() {
-				P7(), I7();
+				I7(), R7();
 			});
-		}, l9 = throttle_default(function() {
-			C7(S7("calculate"));
-		}), u9 = computed(function() {
+		}, d9 = throttle_default(function() {
+			T7(w7("calculate"));
+		}), f9 = computed(function() {
 			return {
 				data: e.data,
 				scroll: _objectSpread$34(_objectSpread$34({}, e.scroll), {}, { fixedRows: e.fixedRows })
 			};
-		}), d9 = useVirtualScrollNew(q, u9), f9 = -1, p9 = function(n) {
+		}), p9 = useVirtualScrollNew(q, f9), m9 = -1, h9 = function(n) {
 			var r = n.target || n.srcElement, a = r.scrollTop;
-			f9 === a ? (f9 = -1, x7(r)) : d9.isVirtualScroll.value && d9.handleScroll(), f9 = a, y7(n), e.tableLayout === "auto" && l9();
-		}, m9 = function() {
+			m9 === a ? (m9 = -1, C7(r)) : p9.isVirtualScroll.value && p9.handleScroll(), m9 = a, x7(n), e.tableLayout === "auto" && d9();
+		}, g9 = function() {
 			c.value && (f.value = c.value.querySelector("tfoot")?.getBoundingClientRect().height);
-		}, h9 = function(e) {
+		}, _9 = function(e) {
 			if (q.value) {
 				for (var n = q.value.querySelector(`th[data-colkey="${e}"]`), r = q.value.querySelectorAll("th.t-table__cell--fixed-left"), a = 0, o = 0, s = r.length; o < s; o++) a += r[o].getBoundingClientRect().width;
 				var c = n.getBoundingClientRect(), l = q.value.getBoundingClientRect(), u = c.left - l.left - a;
@@ -40921,7 +40921,7 @@ var _BaseTable = defineComponent({
 			}
 		};
 		watch(q, function() {
-			F7(q.value), e.tableLayout === "auto" && l9();
+			L7(q.value), e.tableLayout === "auto" && d9();
 		}), watch(function() {
 			return [
 				c.value,
@@ -40931,31 +40931,31 @@ var _BaseTable = defineComponent({
 			];
 		}, function() {
 			var e = setTimeout(function() {
-				m9(), clearTimeout(e);
+				g9(), clearTimeout(e);
 			}, 0);
 		}), watch(s, function(e) {
-			w7(e);
+			E7(e);
 		}), onMounted(function() {
-			m9(), F7(q.value), w7(s.value);
+			g9(), L7(q.value), E7(s.value);
 		});
-		var g9 = function() {
-			e.activeRowType && $7(), r9.value && a9();
-		}, _9 = function() {
-			e.activeRowType && e9(), r9.value && o9();
-		}, v9 = function(n) {
+		var v9 = function() {
+			e.activeRowType && t9(), a9.value && s9();
+		}, y9 = function() {
+			e.activeRowType && n9(), a9.value && c9();
+		}, b9 = function(n) {
 			var r;
-			(r = e.onRowClick) == null || r.call(e, n), e.activeRowType && Q7(n), r9.value && i9();
+			(r = e.onRowClick) == null || r.call(e, n), e.activeRowType && e9(n), a9.value && o9();
 		};
 		watch([R], function(e) {
 			var r = _slicedToArray$1(e, 1), a = r[0];
 			n.emit("show-element-change", a);
 		}, { immediate: !0 });
-		var y9 = computed(function() {
-			return B7.value ? R7.value : e.data;
+		var x9 = computed(function() {
+			return H7.value ? B7.value : e.data;
 		});
 		return n.expose({
 			refreshTable: $,
-			scrollColumnIntoView: h9,
+			scrollColumnIntoView: _9,
 			scrollToElement: function(n) {
 				var r = n.index;
 				if (!r && r !== 0) {
@@ -40963,11 +40963,11 @@ var _BaseTable = defineComponent({
 						log.error("Table", "scrollToElement: one of `index` or `key` must exist.");
 						return;
 					}
-					r = y9.value?.findIndex(function(r) {
+					r = x9.value?.findIndex(function(r) {
 						return get_default(r, e.rowKey) === n.key;
 					}), r < 0 && log.error("Table", `${n.key} does not exist in data, check \`rowKey\` or \`data\` please.`);
 				}
-				if (d9.isVirtualScroll.value) d9.scrollToElement(_objectSpread$34(_objectSpread$34({}, n), {}, { index: r + 1 }));
+				if (p9.isVirtualScroll.value) p9.scrollToElement(_objectSpread$34(_objectSpread$34({}, n), {}, { index: r + 1 }));
 				else {
 					var a, o = l.value?.$el, s = o == null || (a = o.children) == null ? void 0 : a[r];
 					if (s) {
@@ -40981,20 +40981,20 @@ var _BaseTable = defineComponent({
 			}
 		}), function() {
 			if (!R.value) return createVNode("div", { ref: s }, null);
-			var r = B7.value ? R7.value : e.data, a = M?.value.leafColumns || e.columns, p = e.allowResizeColumnWidth ?? e.resizable;
+			var r = H7.value ? B7.value : e.data, a = M?.value.leafColumns || e.columns, p = e.allowResizeColumnWidth ?? e.resizable;
 			p && e.tableLayout === "auto" && log.warn("Table", "table-layout can not be `auto`, cause you are using column resizable, set `table-layout: fixed` please.");
 			var _ = e.tableLayout === "fixed" && Y.value ? "100px" : void 0, b = function() {
 				var n = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : !0;
 				return createVNode("colgroup", null, [a.map(function(r) {
-					var a = { width: formatCSSUnit((n || p ? g7.value[r.colKey] : void 0) || r.width) || _ };
+					var a = { width: formatCSSUnit((n || p ? v7.value[r.colKey] : void 0) || r.width) || _ };
 					return r.minWidth && (a.minWidth = formatCSSUnit(r.minWidth)), !a.width && !r.minWidth && e.tableLayout === "fixed" && (a.minWidth = "80px"), createVNode("col", {
 						key: r.colKey,
 						style: a
 					}, null);
 				})]);
 			}, x = function() {
-				return e.showHeader === !1 ? null : !!(d9.isVirtualScroll.value || e.headerAffixedTop) && (e.headerAffixedTop ? createVNode(Affix, mergeProps({ offsetTop: 0 }, getAffixProps(e.headerAffixedTop), {
-					onFixedChange: c9,
+				return e.showHeader === !1 ? null : !!(p9.isVirtualScroll.value || e.headerAffixedTop) && (e.headerAffixedTop ? createVNode(Affix, mergeProps({ offsetTop: 0 }, getAffixProps(e.headerAffixedTop), {
+					onFixedChange: u9,
 					ref: V
 				}), _isSlot$9(X) ? X : { default: function() {
 					return [X];
@@ -41006,12 +41006,12 @@ var _BaseTable = defineComponent({
 					ref: B
 				}), { default: function() {
 					return [createVNode("div", {
-						ref: k7,
+						ref: j7,
 						class: ["scrollbar", y.obviousScrollbar],
 						style: {
 							width: `${G.value}px`,
 							overflow: "auto",
-							opacity: Number(M7.value)
+							opacity: Number(P7.value)
 						}
 					}, [createVNode("div", { style: {
 						width: `${K.value}px`,
@@ -41020,88 +41020,88 @@ var _BaseTable = defineComponent({
 				} });
 			}, E = {
 				isFixedHeader: J.value,
-				rowAndColFixedPosition: _7.value,
+				rowAndColFixedPosition: y7.value,
 				isMultipleHeader: j.value,
 				bordered: e.bordered,
 				maxHeight: e.maxHeight,
 				height: e.height,
 				spansAndLeafNodes: M.value,
 				thList: P.value,
-				thWidthList: g7.value,
+				thWidthList: v7.value,
 				resizable: e.resizable,
-				columnResizeParams: H7,
+				columnResizeParams: W7,
 				classPrefix: m,
 				ellipsisOverlayClassName: I.value === "medium" ? "" : C[I.value],
 				attach: e.attach,
 				showColumnShadow: Z,
 				thDraggable: e.thDraggable
-			}, O = getIEVersion() <= 11 ? 4 : 0, k = Y.value ? W.value : 0, A = ref((D7.value?.getBoundingClientRect().height || 0) - O), N = setTimeout(function() {
-				A.value = (D7.value?.getBoundingClientRect().height || 0) - O, clearTimeout(N);
+			}, O = getIEVersion() <= 11 ? 4 : 0, k = Y.value ? W.value : 0, A = ref((k7.value?.getBoundingClientRect().height || 0) - O), N = setTimeout(function() {
+				A.value = (k7.value?.getBoundingClientRect().height || 0) - O, clearTimeout(N);
 			}, 0), F = computed(function() {
 				return A.value - k;
-			}), L = e.headerAffixedTop ? Number(j7.value) : 1, U = computed(function() {
+			}), L = e.headerAffixedTop ? Number(N7.value) : 1, U = computed(function() {
 				return {
 					width: `${G.value}px`,
 					height: `${F.value}px`,
 					opacity: L
 				};
-			}), m7 = e.bordered ? 1 : 0, h7 = !!((e.headerAffixedTop || d9.isVirtualScroll.value) && G.value) && createVNode("div", {
-				ref: D7,
+			}), g7 = e.bordered ? 1 : 0, _7 = !!((e.headerAffixedTop || p9.isVirtualScroll.value) && G.value) && createVNode("div", {
+				ref: k7,
 				style: {
-					width: `${G.value - m7}px`,
-					opacity: Number(j7.value)
+					width: `${G.value - g7}px`,
+					opacity: Number(N7.value)
 				},
-				class: ["scrollbar", _defineProperty$1({}, y.affixedHeaderElm, e.headerAffixedTop || d9.isVirtualScroll.value)]
+				class: ["scrollbar", _defineProperty$1({}, y.affixedHeaderElm, e.headerAffixedTop || p9.isVirtualScroll.value)]
 			}, [createVNode("table", {
-				class: q7.value,
+				class: Y7.value,
 				style: _objectSpread$34(_objectSpread$34({}, D.value), {}, { width: `${K.value}px` })
 			}, [b(!0), createVNode(THead, E, n.slots)])]), X = createVNode("div", {
 				class: y.affixedHeaderWrap,
 				style: U.value
-			}, [h7]), Q = Y.value ? W.value : 0;
+			}, [_7]), Q = Y.value ? W.value : 0;
 			e.bordered && (Q += 1);
-			var $ = !!(d9.isVirtualScroll.value || e.footerAffixedBottom), v7 = e.footData?.length || e.footerSummary || n.slots.footerSummary, y7 = !!($ && v7 && G.value) && createVNode(Affix, mergeProps({
+			var $ = !!(p9.isVirtualScroll.value || e.footerAffixedBottom), b7 = e.footData?.length || e.footerSummary || n.slots.footerSummary, x7 = !!($ && b7 && G.value) && createVNode(Affix, mergeProps({
 				class: y.affixedFooterWrap,
-				onFixedChange: c9,
+				onFixedChange: u9,
 				offsetBottom: Q || 0
 			}, getAffixProps(e.footerAffixedBottom), {
 				style: { marginTop: `${-1 * ((f.value ?? 0) + Q)}px` },
 				ref: H
 			}), { default: function() {
 				return [createVNode("div", {
-					ref: O7,
+					ref: A7,
 					style: {
-						width: `${G.value - m7}px`,
-						opacity: Number(M7.value)
+						width: `${G.value - g7}px`,
+						opacity: Number(P7.value)
 					},
-					class: ["scrollbar", _defineProperty$1({}, y.affixedFooterElm, e.footerAffixedBottom || d9.isVirtualScroll.value)]
+					class: ["scrollbar", _defineProperty$1({}, y.affixedFooterElm, e.footerAffixedBottom || p9.isVirtualScroll.value)]
 				}, [createVNode("table", {
-					class: q7.value,
+					class: Y7.value,
 					style: _objectSpread$34(_objectSpread$34({}, D.value), {}, { width: `${K.value}px` })
 				}, [b(!0), createVNode(TFoot, {
 					rowKey: e.rowKey,
 					isFixedHeader: J.value,
-					rowAndColFixedPosition: _7.value,
+					rowAndColFixedPosition: y7.value,
 					footData: e.footData,
 					columns: M.value.leafColumns,
 					rowAttributes: e.rowAttributes,
 					rowClassName: e.rowClassName,
-					thWidthList: g7.value,
+					thWidthList: v7.value,
 					footerSummary: e.footerSummary,
 					rowspanAndColspanInFooter: e.rowspanAndColspanInFooter
 				}, n.slots)])])];
-			} }), b7 = `translate(0, ${d9.scrollHeight.value + (f.value ?? 0) + (A.value ?? 0)}px)`, x7 = {
-				transform: b7,
-				"-ms-transform": b7,
-				"-moz-transform": b7,
-				"-webkit-transform": b7
-			}, S7 = _objectSpread$34(_objectSpread$34({
+			} }), S7 = `translate(0, ${p9.scrollHeight.value + (f.value ?? 0) + (A.value ?? 0)}px)`, C7 = {
+				transform: S7,
+				"-ms-transform": S7,
+				"-moz-transform": S7,
+				"-webkit-transform": S7
+			}, w7 = _objectSpread$34(_objectSpread$34({
 				classPrefix: m,
 				ellipsisOverlayClassName: I.value === "medium" ? "" : C[I.value],
-				rowAndColFixedPosition: _7.value,
+				rowAndColFixedPosition: y7.value,
 				showColumnShadow: Z,
 				data: r,
-				virtualConfig: d9,
+				virtualConfig: p9,
 				columns: M.value.leafColumns,
 				tableElm: s.value,
 				tableWidth: G.value,
@@ -41109,87 +41109,87 @@ var _BaseTable = defineComponent({
 				scroll: e.scroll,
 				cellEmptyContent: e.cellEmptyContent,
 				tableContentElm: q.value,
-				handleRowMounted: d9.handleRowMounted,
+				handleRowMounted: p9.handleRowMounted,
 				renderExpandedRow: e.renderExpandedRow
 			}, pick_default(e, extendTableProps)), {}, {
-				pagination: z7.value,
+				pagination: V7.value,
 				attach: e.attach,
-				hoverRow: n9.value,
-				activeRow: Z7.value,
-				onRowClick: v9
-			}), C7 = createVNode("div", {
+				hoverRow: i9.value,
+				activeRow: $7.value,
+				onRowClick: b9
+			}), T7 = createVNode("div", {
 				ref: q,
 				class: y.content,
 				style: w.value,
-				onScroll: p9
-			}, [d9.isVirtualScroll.value && createVNode("div", {
+				onScroll: h9
+			}, [p9.isVirtualScroll.value && createVNode("div", {
 				class: g.cursor,
-				style: x7
+				style: C7
 			}, null), createVNode("table", {
 				ref: c,
-				class: q7.value,
+				class: Y7.value,
 				style: _objectSpread$34(_objectSpread$34({}, D.value), {}, { width: e.resizable && Y.value && K.value ? `${K.value}px` : D.value.width })
 			}, [
 				b(!1),
-				e.showHeader && createVNode(THead, _objectSpread$34(_objectSpread$34({}, E), {}, { thWidthList: p ? g7.value : {} }), n.slots),
-				createVNode(TBody, mergeProps({ ref: l }, S7), n.slots),
+				e.showHeader && createVNode(THead, _objectSpread$34(_objectSpread$34({}, E), {}, { thWidthList: p ? v7.value : {} }), n.slots),
+				createVNode(TBody, mergeProps({ ref: l }, w7), n.slots),
 				createVNode(TFoot, {
 					rowKey: e.rowKey,
 					isFixedHeader: J.value,
-					rowAndColFixedPosition: _7.value,
+					rowAndColFixedPosition: y7.value,
 					footData: e.footData,
 					columns: M.value.leafColumns,
 					rowAttributes: e.rowAttributes,
 					rowClassName: e.rowClassName,
 					footerSummary: e.footerSummary,
 					rowspanAndColspanInFooter: e.rowspanAndColspanInFooter,
-					virtualScroll: d9.isVirtualScroll.value
+					virtualScroll: p9.isVirtualScroll.value
 				}, n.slots)
-			])]), w7 = isFunction_default(e.loading) ? e.loading : n.slots.loading, T7 = e.loading !== void 0 && createVNode(Loading, mergeProps({
+			])]), E7 = isFunction_default(e.loading) ? e.loading : n.slots.loading, D7 = e.loading !== void 0 && createVNode(Loading, mergeProps({
 				loading: !!e.loading,
-				text: w7,
+				text: E7,
 				attach: s.value ? function() {
 					return s.value;
 				} : void 0,
 				showOverlay: !0,
 				size: "small"
-			}, e.loadingProps), null), E7 = o("topContent"), P7 = o("bottomContent"), F7 = createVNode("div", {
-				ref: A7,
+			}, e.loadingProps), null), O7 = o("topContent"), I7 = o("bottomContent"), L7 = createVNode("div", {
+				ref: M7,
 				class: y.paginationWrap,
-				style: { opacity: Number(N7.value) }
-			}, [V7()]), I7 = !!P7 && createVNode("div", {
+				style: { opacity: Number(F7.value) }
+			}, [U7()]), R7 = !!I7 && createVNode("div", {
 				ref: d,
 				class: y.bottomContent
-			}, [P7]);
+			}, [I7]);
 			return createVNode("div", {
 				ref: s,
-				tabindex: s9.value,
-				class: K7.value,
-				onFocus: g9,
-				onBlur: _9
+				tabindex: l9.value,
+				class: J7.value,
+				onFocus: v9,
+				onBlur: y9
 			}, [
-				!!E7 && createVNode("div", { class: y.topContent }, [E7]),
+				!!O7 && createVNode("div", { class: y.topContent }, [O7]),
 				x(),
-				C7,
-				y7,
 				T7,
-				I7,
-				J7.value && createVNode("div", {
+				x7,
+				D7,
+				R7,
+				X7.value && createVNode("div", {
 					class: y.scrollbarDivider,
 					style: {
 						right: `${W.value}px`,
-						bottom: Y7.value ? `${Y7.value}px` : void 0,
+						bottom: Z7.value ? `${Z7.value}px` : void 0,
 						height: `${q.value?.getBoundingClientRect().height}px`
 					}
 				}, null),
 				e.horizontalScrollAffixedBottom && S(),
-				e.paginationAffixedBottom ? createVNode(Affix, mergeProps({ offsetBottom: 0 }, getAffixProps(e.paginationAffixedBottom), { ref: z }), _isSlot$9(F7) ? F7 : { default: function() {
-					return [F7];
-				} }) : F7,
+				e.paginationAffixedBottom ? createVNode(Affix, mergeProps({ offsetBottom: 0 }, getAffixProps(e.paginationAffixedBottom), { ref: z }), _isSlot$9(L7) ? L7 : { default: function() {
+					return [L7];
+				} }) : L7,
 				createVNode("div", {
-					ref: U7,
+					ref: G7,
 					class: y.resizeLine,
-					style: W7
+					style: K7
 				}, null)
 			]);
 		};
@@ -44099,15 +44099,15 @@ var OMIT_PROPS = /* @__PURE__ */ "hideSortTips.dragSort.defaultExpandedRowKeys.d
 	setup: function(e, n) {
 		var r = useTNodeJSX$1(), a = toRefs(e), o = a.columns, s = a.columnController, c = ref(null), l = ref(!1), d = useClassName(), f = d.classPrefix, p = d.tableDraggableClasses, m = d.tableBaseClass, g = d.tableSelectedClasses, _ = d.tableSortClasses, y = useConfig("table", e.locale), x = y.globalConfig, C = useStyle(e), w = C.sizeClassNames, E = computed(function() {
 			return e.size ?? x.value.size;
-		}), D = useColumnController(e, n), O = D.tDisplayColumns, k = D.renderColumnController, A = useRowExpand(e, n), j = A.showExpandedRow, M = A.showExpandIconColumn, P = A.getExpandColumn, F = A.renderExpandedRow, I = A.onInnerExpandRowClick, L = A.getExpandedRowClass, R = useSorter(e, n), z = R.renderSortIcon, B = useRowSelect(e, g), V = B.selectColumn, H = B.showRowSelect, U = B.selectedRowClassNames, W = B.currentPaginateData, G = B.formatToRowSelectColumn, K = B.setTSelectedRowKeys, q = B.onInnerSelectRowClick, J = B.handleRowSelectWithAreaSelection, h7 = useFilter(e, n), Y = h7.hasEmptyCondition, X = h7.isTableOverflowHidden, g7 = h7.renderFilterIcon, Z = h7.renderFirstFilterRow, _7 = h7.setFilterPrimaryTableRef, Q = computed(function() {
+		}), D = useColumnController(e, n), O = D.tDisplayColumns, k = D.renderColumnController, A = useRowExpand(e, n), j = A.showExpandedRow, M = A.showExpandIconColumn, P = A.getExpandColumn, F = A.renderExpandedRow, I = A.onInnerExpandRowClick, L = A.getExpandedRowClass, R = useSorter(e, n), z = R.renderSortIcon, B = useRowSelect(e, g), V = B.selectColumn, H = B.showRowSelect, U = B.selectedRowClassNames, W = B.currentPaginateData, G = B.formatToRowSelectColumn, K = B.setTSelectedRowKeys, q = B.onInnerSelectRowClick, J = B.handleRowSelectWithAreaSelection, _7 = useFilter(e, n), Y = _7.hasEmptyCondition, X = _7.isTableOverflowHidden, v7 = _7.renderFilterIcon, Z = _7.renderFirstFilterRow, y7 = _7.setFilterPrimaryTableRef, Q = computed(function() {
 			return { showElement: l.value };
-		}), $ = useDragSort(e, n, Q), v7 = $.isRowHandlerDraggable, y7 = $.isRowDraggable, b7 = $.isColDraggable, x7 = $.innerPagination, S7 = $.setDragSortPrimaryTableRef, C7 = $.setDragSortColumns, w7 = useTableHeader(e), T7 = w7.renderTitleWidthIcon, E7 = useAsyncLoading(e), D7 = E7.renderAsyncLoading, O7 = useRowEdit(e), k7 = O7.errorListMap, A7 = O7.editableKeysMap, j7 = O7.validateRowData, M7 = O7.validateTableData, N7 = O7.validateTableCellData, P7 = O7.onRuleChange, F7 = O7.clearValidateData, I7 = O7.onUpdateEditedCell, L7 = O7.getEditRowData, R7 = O7.onPrimaryTableCellEditChange, z7 = computed(function() {
+		}), $ = useDragSort(e, n, Q), b7 = $.isRowHandlerDraggable, x7 = $.isRowDraggable, S7 = $.isColDraggable, C7 = $.innerPagination, w7 = $.setDragSortPrimaryTableRef, T7 = $.setDragSortColumns, E7 = useTableHeader(e), D7 = E7.renderTitleWidthIcon, O7 = useAsyncLoading(e), k7 = O7.renderAsyncLoading, A7 = useRowEdit(e), j7 = A7.errorListMap, M7 = A7.editableKeysMap, N7 = A7.validateRowData, P7 = A7.validateTableData, F7 = A7.validateTableCellData, I7 = A7.onRuleChange, L7 = A7.clearValidateData, R7 = A7.onUpdateEditedCell, z7 = A7.getEditRowData, B7 = A7.onPrimaryTableCellEditChange, V7 = computed(function() {
 			return !!(j.value || H.value);
-		}), B7 = computed(function() {
-			return !!(j.value || H.value);
-		}), V7 = computed(function() {
-			return _defineProperty$1(_defineProperty$1(_defineProperty$1(_defineProperty$1(_defineProperty$1(_defineProperty$1(_defineProperty$1(_defineProperty$1({}, p.colDraggable, b7.value), p.rowHandlerDraggable, v7.value), p.rowDraggable, y7.value), m.overflowVisible, X.value === !1), m.tableRowEdit, e.editableRowKeys), `${f}-table--select-${V.value?.type}`, V.value), `${f}-table--row-select`, H.value), `${f}-table--row-expandable`, j.value);
 		}), H7 = computed(function() {
+			return !!(j.value || H.value);
+		}), U7 = computed(function() {
+			return _defineProperty$1(_defineProperty$1(_defineProperty$1(_defineProperty$1(_defineProperty$1(_defineProperty$1(_defineProperty$1(_defineProperty$1({}, p.colDraggable, S7.value), p.rowHandlerDraggable, b7.value), p.rowDraggable, x7.value), m.overflowVisible, X.value === !1), m.tableRowEdit, e.editableRowKeys), `${f}-table--select-${V.value?.type}`, V.value), `${f}-table--row-select`, H.value), `${f}-table--row-expandable`, j.value);
+		}), W7 = computed(function() {
 			return [
 				e.rowClassName,
 				U.value,
@@ -44115,9 +44115,9 @@ var OMIT_PROPS = /* @__PURE__ */ "hideSortTips.dragSort.defaultExpandedRowKeys.d
 			].filter(function(e) {
 				return e;
 			});
-		}), U7 = computed(function() {
+		}), G7 = computed(function() {
 			var n = [e.rowAttributes];
-			return (v7.value || y7.value) && n.push(function(n) {
+			return (b7.value || x7.value) && n.push(function(n) {
 				var r = n.row;
 				return { "data-id": get_default(r, e.rowKey || "id") };
 			}), n.filter(function(e) {
@@ -44125,12 +44125,12 @@ var OMIT_PROPS = /* @__PURE__ */ "hideSortTips.dragSort.defaultExpandedRowKeys.d
 			});
 		});
 		onMounted(function() {
-			_7(c.value), S7(c.value);
+			y7(c.value), w7(c.value);
 		}), n.expose({
-			validateRowData: j7,
-			validateTableData: M7,
-			validateTableCellData: N7,
-			clearValidateData: F7,
+			validateRowData: N7,
+			validateTableData: P7,
+			validateTableCellData: F7,
+			clearValidateData: L7,
 			refreshTable: function() {
 				c.value.refreshTable();
 			},
@@ -44142,12 +44142,12 @@ var OMIT_PROPS = /* @__PURE__ */ "hideSortTips.dragSort.defaultExpandedRowKeys.d
 			},
 			baseTableRef: c
 		});
-		var W7 = function(n) {
+		var K7 = function(n) {
 			var r;
 			(r = e.onRowEdit) == null || r.call(e, n);
 			var a = get_default(n.editedRow, e.rowKey || "id");
-			I7(a, n.row, _defineProperty$1({}, n.col.colKey, n.value));
-		}, G7 = function(r) {
+			R7(a, n.row, _defineProperty$1({}, n.col.colKey, n.value));
+		}, q7 = function(r) {
 			for (var a = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : !1, o = [], s = function() {
 				var s, u, d, p = _objectSpread$24({}, r[l]);
 				if (!(p.children?.length || O.value?.includes(p.colKey)) && (e.columnController || e.displayColumns || e.defaultDisplayColumns) && !a) return 1;
@@ -44158,8 +44158,8 @@ var OMIT_PROPS = /* @__PURE__ */ "hideSortTips.dragSort.defaultExpandedRowKeys.d
 				}) && (p.className = p.className instanceof Array ? p.className.concat(_.sortColumn) : [p.className, _.sortColumn]), p.sorter || p.filter) {
 					var y = renderTitle(n.slots, p, l), b = p, x = b.ellipsisTitle;
 					p.title = function(e, n) {
-						var r = p.sorter ? z(n) : null, a = p.filter ? g7(n) : null, o = c.value?.tableContentRef;
-						return T7([
+						var r = p.sorter ? z(n) : null, a = p.filter ? v7(n) : null, o = c.value?.tableContentRef;
+						return D7([
 							y,
 							r,
 							a
@@ -44173,34 +44173,34 @@ var OMIT_PROPS = /* @__PURE__ */ "hideSortTips.dragSort.defaultExpandedRowKeys.d
 					var S = p.cell;
 					p.cell = function(r, a) {
 						var o = _objectSpread$24(_objectSpread$24({}, a), {}, {
-							row: L7(a),
+							row: z7(a),
 							oldCell: S,
 							rowKey: e.rowKey || "id",
 							tableBaseClass: m,
 							cellEmptyContent: e.cellEmptyContent,
-							onChange: W7,
+							onChange: K7,
 							onValidate: e.onRowValidate,
-							onRuleChange: P7,
-							onEditableChange: R7
+							onRuleChange: I7,
+							onEditableChange: B7
 						});
 						if (e.editableRowKeys) {
 							var s = get_default(a.row, e.rowKey || "id");
-							o.editable = A7.value[s] || !1;
-							var c = [s, a.col.colKey].join("__"), l = k7.value?.[c];
+							o.editable = M7.value[s] || !1;
+							var c = [s, a.col.colKey].join("__"), l = j7.value?.[c];
 							l && (o.errors = l);
 						}
-						return e.editableCellState && (o.readonly = !e.editableCellState(a)), createVNode(EditableCell, mergeProps(o, { onUpdateEditedCell: I7 }), n.slots);
+						return e.editableCellState && (o.readonly = !e.editableCellState(a)), createVNode(EditableCell, mergeProps(o, { onUpdateEditedCell: R7 }), n.slots);
 					};
 				}
-				(u = p.children) != null && u.length && (p.children = G7(p.children, a || O.value?.includes(p.colKey))), (!p.children || (d = p.children) != null && d.length) && o.push(p);
+				(u = p.children) != null && u.length && (p.children = q7(p.children, a || O.value?.includes(p.colKey))), (!p.children || (d = p.children) != null && d.length) && o.push(p);
 			}, l = 0, u = r.length; l < u; l++) if (s()) continue;
 			return o;
-		}, K7 = computed(function() {
-			var e = G7(o.value);
+		}, J7 = computed(function() {
+			var e = q7(o.value);
 			return M.value && e.unshift(P()), e;
-		}), q7 = function(n, r) {
+		}), Y7 = function(n, r) {
 			var a, o;
-			x7.value = _objectSpread$24(_objectSpread$24({}, x7.value), n), W.value = r, (a = e.onPageChange) == null || a.call(e, n, r);
+			C7.value = _objectSpread$24(_objectSpread$24({}, C7.value), n), W.value = r, (a = e.onPageChange) == null || a.call(e, n, r);
 			var s = [{ pagination: n }, {
 				trigger: "pagination",
 				currentData: r
@@ -44210,22 +44210,22 @@ var OMIT_PROPS = /* @__PURE__ */ "hideSortTips.dragSort.defaultExpandedRowKeys.d
 				type: "uncheck",
 				currentRowKey: "CLEAR_ON_PAGINATE"
 			});
-		}, J7 = function(n) {
+		}, X7 = function(n) {
 			var r;
 			(r = e.onActiveRowAction) == null || r.call(e, n), J(n);
-		}, Y7 = function(n) {
+		}, Z7 = function(n) {
 			e.expandOnRowClick && I(n), e.selectOnRowClick && q(n);
-		}, X7, Z7 = 250, Q7 = function(n) {
+		}, Q7, $7 = 250, e9 = function(n) {
 			if (!e.onRowDblclick) {
-				Y7(n);
+				Z7(n);
 				return;
 			}
-			X7 ? (clearTimeout(X7), X7 = void 0) : X7 = setTimeout(function() {
-				Y7(n), X7 = void 0;
-			}, Z7);
-		}, $7 = function(e) {
+			Q7 ? (clearTimeout(Q7), Q7 = void 0) : Q7 = setTimeout(function() {
+				Z7(n), Q7 = void 0;
+			}, $7);
+		}, t9 = function(e) {
 			l.value = e;
-		}, e9 = function(n, a, o, s) {
+		}, n9 = function(n, a, o, s) {
 			if (!o) return e[n];
 			var c = a(h), l = r(n);
 			return c && !l ? function() {
@@ -44237,27 +44237,27 @@ var OMIT_PROPS = /* @__PURE__ */ "hideSortTips.dragSort.defaultExpandedRowKeys.d
 			} : null;
 		};
 		return function() {
-			var r = !!(s.value && Object.keys(s.value).length), a = r ? s.value.placement || "top-right" : "", o = r && a?.indexOf("bottom") !== -1, l = e9("topContent", k, r && !o), u = e9("bottomContent", k, o, { reverse: !0 }), d = e9("firstFullRow", Z, !Y.value), f = e9("lastFullRow", D7, !!e.asyncLoading), p = getCurrentInstance(), m = p.vnode, g = _objectSpread$24(_objectSpread$24({}, omit_default(m.props, OMIT_PROPS)), {}, {
+			var r = !!(s.value && Object.keys(s.value).length), a = r ? s.value.placement || "top-right" : "", o = r && a?.indexOf("bottom") !== -1, l = n9("topContent", k, r && !o), u = n9("bottomContent", k, o, { reverse: !0 }), d = n9("firstFullRow", Z, !Y.value), f = n9("lastFullRow", k7, !!e.asyncLoading), p = getCurrentInstance(), m = p.vnode, g = _objectSpread$24(_objectSpread$24({}, omit_default(m.props, OMIT_PROPS)), {}, {
 				rowKey: e.rowKey,
-				rowClassName: H7.value,
-				rowAttributes: U7.value,
-				columns: K7.value,
-				keyboardRowHover: e.keyboardRowHover ?? z7.value,
-				disableSpaceInactiveRow: e.disableSpaceInactiveRow ?? B7.value,
+				rowClassName: W7.value,
+				rowAttributes: G7.value,
+				columns: J7.value,
+				keyboardRowHover: e.keyboardRowHover ?? V7.value,
+				disableSpaceInactiveRow: e.disableSpaceInactiveRow ?? H7.value,
 				topContent: l,
 				bottomContent: u,
 				firstFullRow: d,
 				lastFullRow: f,
 				thDraggable: ["col", "row-handler-col"].includes(e.dragSort),
-				onShowElementChange: $7,
-				onPageChange: q7,
+				onShowElementChange: t9,
+				onPageChange: Y7,
 				renderExpandedRow: j.value ? F : void 0,
-				onActiveRowAction: J7
+				onActiveRowAction: X7
 			});
-			return (e.expandOnRowClick || e.selectOnRowClick) && (g.onRowClick = Q7), createVNode(_BaseTable, mergeProps(g, {
+			return (e.expandOnRowClick || e.selectOnRowClick) && (g.onRowClick = e9), createVNode(_BaseTable, mergeProps(g, {
 				ref: c,
-				class: V7.value,
-				onLeafColumnsChange: C7
+				class: U7.value,
+				onLeafColumnsChange: T7
 			}), n.slots);
 		};
 	}
@@ -45041,7 +45041,7 @@ function useTreeData(e, n) {
 	function X() {
 		return m.value.getTreeNode(_.value, C.value);
 	}
-	function g7() {
+	function v7() {
 		var e = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : "data";
 		return m.value.getTreeExpandedRow(_.value, C.value, e);
 	}
@@ -45063,7 +45063,7 @@ function useTreeData(e, n) {
 		foldAll: k,
 		getTreeNode: X,
 		resetData: I,
-		getTreeExpandedRow: g7,
+		getTreeExpandedRow: v7,
 		onExpandFoldIconClick: j
 	};
 }
@@ -45595,7 +45595,7 @@ var _CollapsePanel = defineComponent({
 		}, q = function() {
 			var e = a("headerRightContent");
 			return e ? createVNode("div", { onClick: U }, [e]) : null;
-		}, h7 = function() {
+		}, _7 = function() {
 			var e = [`${c.value}__header`, _defineProperty$1({}, d.value, D.value && !R.value)];
 			return createVNode("div", {
 				class: e,
@@ -45616,7 +45616,7 @@ var _CollapsePanel = defineComponent({
 		};
 		return function() {
 			var e;
-			return createVNode("div", { class: B.value }, [createVNode("div", { class: `${c.value}__wrapper` }, [h7(), createVNode(Transition, {
+			return createVNode("div", { class: B.value }, [createVNode("div", { class: `${c.value}__wrapper` }, [_7(), createVNode(Transition, {
 				name: f.value,
 				onBeforeEnter: j,
 				onEnter: M,
@@ -48065,7 +48065,7 @@ var key = 1, _Drawer = defineComponent({
 			e.mode === "push" && nextTick(function() {
 				B.value && (B.value.style.cssText = "transition: margin 300ms cubic-bezier(0.7, 0.3, 0.1, 1) 0s;");
 			});
-		}, m7 = function() {
+		}, g7 = function() {
 			if (!(!B.value || e.mode !== "push")) {
 				var n = {
 					left: {
@@ -48122,7 +48122,7 @@ var key = 1, _Drawer = defineComponent({
 			setTimeout(function() {
 				return o.value = n;
 			});
-		}, g7 = function() {
+		}, v7 = function() {
 			!e.showInAttachedElement && e.preventScrollThrough && o.value && (D.value || !e.lazy) && (s.value || G(), s.value && !document.head.contains(s.value) && document.head.appendChild(s.value));
 		};
 		watch(function() {
@@ -48131,7 +48131,7 @@ var key = 1, _Drawer = defineComponent({
 			if (!isServer$1) {
 				if (n) {
 					var r;
-					g7(), (r = e.onBeforeOpen) == null || r.call(e);
+					v7(), (r = e.onBeforeOpen) == null || r.call(e);
 				} else {
 					var a;
 					W(), (a = e.onBeforeClose) == null || a.call(e);
@@ -48145,7 +48145,7 @@ var key = 1, _Drawer = defineComponent({
 				trigger: "close-btn",
 				e: n
 			});
-		}, _7 = function(n) {
+		}, y7 = function(n) {
 			var r;
 			(r = e.onOverlayClick) == null || r.call(e, { e: n }), (e.closeOnOverlayClick ?? d.value.closeOnOverlayClick) && Q({
 				trigger: "overlay",
@@ -48155,8 +48155,8 @@ var key = 1, _Drawer = defineComponent({
 			var a;
 			(a = e.onClose) == null || a.call(e, r), n.emit("update:visible", !1);
 		};
-		onUpdated(m7), onMounted(function() {
-			g7(), window.addEventListener("keydown", U);
+		onUpdated(g7), onMounted(function() {
+			v7(), window.addEventListener("keydown", U);
 		}), onBeforeUnmount(function() {
 			W(), window.removeEventListener("keydown", U);
 		});
@@ -48178,7 +48178,7 @@ var key = 1, _Drawer = defineComponent({
 						tabindex: 0
 					}, n.attrs), [e.showOverlay && createVNode("div", {
 						class: `${_.value}__mask`,
-						onClick: _7
+						onClick: y7
 					}, null), createVNode("div", {
 						class: z.value,
 						style: _objectSpread$14(_objectSpread$14({}, R.value), C.value)
@@ -48421,14 +48421,14 @@ var _Guide = defineComponent({
 			nextTick(function() {
 				M.value = F.value, scrollToParentVisibleArea(M.value), q(A.value), scrollToElm(M.value);
 			});
-		}, g7 = function() {
+		}, v7 = function() {
 			var e, n;
 			(e = F.value) == null || e.parentNode.removeChild(F.value), (n = P.value) == null || n.parentNode.removeChild(P.value);
 		}, Z = function() {
-			B.value ? (g7(), J()) : (Y(), X()), G.value = !0;
-		}, _7 = function() {
+			B.value ? (v7(), J()) : (Y(), X()), G.value = !0;
+		}, y7 = function() {
 			var e, n;
-			Y(), g7(), (e = A.value) == null || e.parentNode.removeChild(A.value), (n = k.value) == null || n.parentNode.removeChild(k.value), removeClass(document.body, c.value);
+			Y(), v7(), (e = A.value) == null || e.parentNode.removeChild(A.value), (n = k.value) == null || n.parentNode.removeChild(k.value), removeClass(document.body, c.value);
 		}, Q = function(n) {
 			var r, a = R.value;
 			L.value = !1, O(-1, {
@@ -48450,7 +48450,7 @@ var _Guide = defineComponent({
 				current: D.value,
 				total: a
 			});
-		}, v7 = function(n) {
+		}, b7 = function(n) {
 			var r, a = R.value;
 			O(D.value + 1, {
 				e: n,
@@ -48461,7 +48461,7 @@ var _Guide = defineComponent({
 				current: D.value,
 				total: a
 			});
-		}, y7 = function(n) {
+		}, x7 = function(n) {
 			var r, a = R.value;
 			L.value = !1, O(-1, {
 				e: n,
@@ -48471,13 +48471,13 @@ var _Guide = defineComponent({
 				current: D.value,
 				total: a
 			});
-		}, b7 = function() {
+		}, S7 = function() {
 			D.value >= 0 && D.value < b.value.length && (L.value || (L.value = !0, addClass(document.body, c.value)), Z());
 		};
 		return watch(D, function(e) {
-			e >= 0 && e < b.value.length ? (G.value = !1, b7()) : (L.value = !1, _7());
+			e >= 0 && e < b.value.length ? (G.value = !1, S7()) : (L.value = !1, y7());
 		}), onMounted(function() {
-			b7();
+			S7();
 		}), function() {
 			var c = function() {
 				return createVNode("div", {
@@ -48527,7 +48527,7 @@ var _Guide = defineComponent({
 						theme: "primary",
 						size: o,
 						variant: "base",
-						onClick: v7
+						onClick: b7
 					}, H("nextButtonProps") ?? d.value.nextButtonProps), null),
 					r && createVNode(Button, mergeProps({
 						key: "finish",
@@ -48535,7 +48535,7 @@ var _Guide = defineComponent({
 						theme: "primary",
 						size: o,
 						variant: "base",
-						onClick: y7
+						onClick: x7
 					}, e.finishButtonProps ?? d.value.finishButtonProps), null)
 				]);
 			}, p = function() {
@@ -48550,9 +48550,9 @@ var _Guide = defineComponent({
 			}, S = function() {
 				var e = z.value.content, r = {
 					handlePrev: $,
-					handleNext: v7,
+					handleNext: b7,
 					handleSkip: Q,
-					handleFinish: y7,
+					handleFinish: x7,
 					current: D.value,
 					total: R.value
 				}, a = isFunction_default(e) ? function() {
@@ -50985,7 +50985,7 @@ var _Upload = defineComponent({
 			onDrop: e.onDrop
 		}, B = computed(function() {
 			return [`${d.value}-upload`, _defineProperty$1({}, `${d.value}-upload--theme-${e.theme}`, e.theme === "file-input")];
-		}), p7 = function() {
+		}), h7 = function() {
 			return createVNode(NormalFile, mergeProps(R.value, { multiple: e.multiple }), {
 				default: function() {
 					return [createVNode("div", {
@@ -51080,7 +51080,7 @@ var _Upload = defineComponent({
 					accept: e.accept,
 					hidden: !0
 				}, e.inputAttributes ? _objectSpread$2({}, e.inputAttributes) : {}), null),
-				["file", "file-input"].includes(e.theme) && !e.draggable && p7(),
+				["file", "file-input"].includes(e.theme) && !e.draggable && h7(),
 				["file", "image"].includes(e.theme) && e.draggable && V(),
 				e.theme === "image" && !e.draggable && H(),
 				["image-flow", "file-flow"].includes(e.theme) && U(),
@@ -52955,7 +52955,7 @@ var props$4 = {
 		});
 		let o = S("I", "a", "is", "so", "us", "to", "at", "if", "in", "it", "on", /[A-Za-z]+['](d|ve|re|ll|t|s|n)/, /[A-Za-z]+[-][a-z]+/, /[A-Za-z][a-z]{2,}/);
 		return a.contains.push({ begin: b(/[ ]+/, "(", o, /[.]?[:]?([.][ ]|[ ])/, "){3}") }), a;
-	}, B = z("//", "$"), p7 = z("/\\*", "\\*/"), V = z("#", "$"), H = {
+	}, B = z("//", "$"), h7 = z("/\\*", "\\*/"), V = z("#", "$"), H = {
 		scope: "number",
 		begin: A,
 		relevance: 0
@@ -52981,7 +52981,7 @@ var props$4 = {
 		scope: "title",
 		begin: O,
 		relevance: 0
-	}, m7 = {
+	}, g7 = {
 		scope: "title",
 		begin: k,
 		relevance: 0
@@ -52995,7 +52995,7 @@ var props$4 = {
 		BINARY_NUMBER_MODE: W,
 		BINARY_NUMBER_RE: M,
 		COMMENT: z,
-		C_BLOCK_COMMENT_MODE: p7,
+		C_BLOCK_COMMENT_MODE: h7,
 		C_LINE_COMMENT_MODE: B,
 		C_NUMBER_MODE: U,
 		C_NUMBER_RE: j,
@@ -53022,18 +53022,18 @@ var props$4 = {
 		SHEBANG: P,
 		TITLE_MODE: K,
 		UNDERSCORE_IDENT_RE: k,
-		UNDERSCORE_TITLE_MODE: m7
+		UNDERSCORE_TITLE_MODE: g7
 	});
-	function h7(e, n) {
+	function _7(e, n) {
 		e.input[e.index - 1] === "." && n.ignoreMatch();
 	}
 	function Y(e, n) {
 		e.className !== void 0 && (e.scope = e.className, delete e.className);
 	}
 	function X(e, n) {
-		n && e.beginKeywords && (e.begin = "\\b(" + e.beginKeywords.split(" ").join("|") + ")(?!\\.)(?=\\b|\\s)", e.__beforeBegin = h7, e.keywords = e.keywords || e.beginKeywords, delete e.beginKeywords, e.relevance === void 0 && (e.relevance = 0));
+		n && e.beginKeywords && (e.begin = "\\b(" + e.beginKeywords.split(" ").join("|") + ")(?!\\.)(?=\\b|\\s)", e.__beforeBegin = _7, e.keywords = e.keywords || e.beginKeywords, delete e.beginKeywords, e.relevance === void 0 && (e.relevance = 0));
 	}
-	function g7(e, n) {
+	function v7(e, n) {
 		Array.isArray(e.illegal) && (e.illegal = S(...e.illegal));
 	}
 	function Z(e, n) {
@@ -53042,7 +53042,7 @@ var props$4 = {
 			e.begin = e.match, delete e.match;
 		}
 	}
-	function _7(e, n) {
+	function y7(e, n) {
 		e.relevance === void 0 && (e.relevance = 1);
 	}
 	var Q = (e, n) => {
@@ -53067,58 +53067,58 @@ var props$4 = {
 		"parent",
 		"list",
 		"value"
-	], v7 = "keyword";
-	function y7(e, n, r = v7) {
+	], b7 = "keyword";
+	function x7(e, n, r = b7) {
 		let a = Object.create(null);
 		return typeof e == "string" ? o(r, e.split(" ")) : Array.isArray(e) ? o(r, e) : Object.keys(e).forEach(function(r) {
-			Object.assign(a, y7(e[r], n, r));
+			Object.assign(a, x7(e[r], n, r));
 		}), a;
 		function o(e, r) {
 			n && (r = r.map((e) => e.toLowerCase())), r.forEach(function(n) {
 				let r = n.split("|");
-				a[r[0]] = [e, b7(r[0], r[1])];
+				a[r[0]] = [e, S7(r[0], r[1])];
 			});
 		}
 	}
-	function b7(e, n) {
-		return n ? Number(n) : x7(e) ? 0 : 1;
+	function S7(e, n) {
+		return n ? Number(n) : C7(e) ? 0 : 1;
 	}
-	function x7(e) {
+	function C7(e) {
 		return $.includes(e.toLowerCase());
 	}
-	var S7 = {}, C7 = (e) => {
+	var w7 = {}, T7 = (e) => {
 		console.error(e);
-	}, w7 = (e, ...n) => {
+	}, E7 = (e, ...n) => {
 		console.log(`WARN: ${e}`, ...n);
-	}, T7 = (e, n) => {
-		S7[`${e}/${n}`] || (console.log(`Deprecated as of ${e}. ${n}`), S7[`${e}/${n}`] = !0);
-	}, E7 = /* @__PURE__ */ Error();
-	function D7(e, n, { key: r }) {
+	}, D7 = (e, n) => {
+		w7[`${e}/${n}`] || (console.log(`Deprecated as of ${e}. ${n}`), w7[`${e}/${n}`] = !0);
+	}, O7 = /* @__PURE__ */ Error();
+	function k7(e, n, { key: r }) {
 		let a = 0, o = e[r], s = {}, c = {};
 		for (let e = 1; e <= n.length; e++) c[e + a] = o[e], s[e + a] = !0, a += C(n[e - 1]);
 		e[r] = c, e[r]._emit = s, e[r]._multi = !0;
 	}
-	function O7(e) {
-		if (Array.isArray(e.begin)) {
-			if (e.skip || e.excludeBegin || e.returnBegin) throw C7("skip, excludeBegin, returnBegin not compatible with beginScope: {}"), E7;
-			if (typeof e.beginScope != "object" || e.beginScope === null) throw C7("beginScope must be object"), E7;
-			D7(e, e.begin, { key: "beginScope" }), e.begin = E(e.begin, { joinWith: "" });
-		}
-	}
-	function k7(e) {
-		if (Array.isArray(e.end)) {
-			if (e.skip || e.excludeEnd || e.returnEnd) throw C7("skip, excludeEnd, returnEnd not compatible with endScope: {}"), E7;
-			if (typeof e.endScope != "object" || e.endScope === null) throw C7("endScope must be object"), E7;
-			D7(e, e.end, { key: "endScope" }), e.end = E(e.end, { joinWith: "" });
-		}
-	}
 	function A7(e) {
-		e.scope && typeof e.scope == "object" && e.scope !== null && (e.beginScope = e.scope, delete e.scope);
+		if (Array.isArray(e.begin)) {
+			if (e.skip || e.excludeBegin || e.returnBegin) throw T7("skip, excludeBegin, returnBegin not compatible with beginScope: {}"), O7;
+			if (typeof e.beginScope != "object" || e.beginScope === null) throw T7("beginScope must be object"), O7;
+			k7(e, e.begin, { key: "beginScope" }), e.begin = E(e.begin, { joinWith: "" });
+		}
 	}
 	function j7(e) {
-		A7(e), typeof e.beginScope == "string" && (e.beginScope = { _wrap: e.beginScope }), typeof e.endScope == "string" && (e.endScope = { _wrap: e.endScope }), O7(e), k7(e);
+		if (Array.isArray(e.end)) {
+			if (e.skip || e.excludeEnd || e.returnEnd) throw T7("skip, excludeEnd, returnEnd not compatible with endScope: {}"), O7;
+			if (typeof e.endScope != "object" || e.endScope === null) throw T7("endScope must be object"), O7;
+			k7(e, e.end, { key: "endScope" }), e.end = E(e.end, { joinWith: "" });
+		}
 	}
 	function M7(e) {
+		e.scope && typeof e.scope == "object" && e.scope !== null && (e.beginScope = e.scope, delete e.scope);
+	}
+	function N7(e) {
+		M7(e), typeof e.beginScope == "string" && (e.beginScope = { _wrap: e.beginScope }), typeof e.endScope == "string" && (e.endScope = { _wrap: e.endScope }), A7(e), j7(e);
+	}
+	function P7(e) {
 		function n(n, r) {
 			return new RegExp(g(n), "m" + (e.case_insensitive ? "i" : "") + (e.unicodeRegex ? "u" : "") + (r ? "g" : ""));
 		}
@@ -53184,16 +53184,16 @@ var props$4 = {
 			[
 				Y,
 				Z,
-				j7,
+				N7,
 				Q
 			].forEach((e) => e(r, a)), e.compilerExtensions.forEach((e) => e(r, a)), r.__beforeBegin = null, [
 				X,
-				g7,
-				_7
+				v7,
+				y7
 			].forEach((e) => e(r, a)), r.isCompiled = !0;
 			let l = null;
-			return typeof r.keywords == "object" && r.keywords.$pattern && (r.keywords = Object.assign({}, r.keywords), l = r.keywords.$pattern, delete r.keywords.$pattern), l ||= /\w+/, r.keywords &&= y7(r.keywords, e.case_insensitive), s.keywordPatternRe = n(l, !0), a && (r.begin ||= /\B|\b/, s.beginRe = n(s.begin), !r.end && !r.endsWithParent && (r.end = /\B|\b/), r.end && (s.endRe = n(s.end)), s.terminatorEnd = g(s.end) || "", r.endsWithParent && a.terminatorEnd && (s.terminatorEnd += (r.end ? "|" : "") + a.terminatorEnd)), r.illegal && (s.illegalRe = n(r.illegal)), r.contains ||= [], r.contains = [].concat(...r.contains.map(function(e) {
-				return P7(e === "self" ? r : e);
+			return typeof r.keywords == "object" && r.keywords.$pattern && (r.keywords = Object.assign({}, r.keywords), l = r.keywords.$pattern, delete r.keywords.$pattern), l ||= /\w+/, r.keywords &&= x7(r.keywords, e.case_insensitive), s.keywordPatternRe = n(l, !0), a && (r.begin ||= /\B|\b/, s.beginRe = n(s.begin), !r.end && !r.endsWithParent && (r.end = /\B|\b/), r.end && (s.endRe = n(s.end)), s.terminatorEnd = g(s.end) || "", r.endsWithParent && a.terminatorEnd && (s.terminatorEnd += (r.end ? "|" : "") + a.terminatorEnd)), r.illegal && (s.illegalRe = n(r.illegal)), r.contains ||= [], r.contains = [].concat(...r.contains.map(function(e) {
+				return I7(e === "self" ? r : e);
 			})), r.contains.forEach(function(e) {
 				c(e, s);
 			}), r.starts && c(r.starts, a), s.matcher = o(s), s;
@@ -53201,19 +53201,19 @@ var props$4 = {
 		if (e.compilerExtensions ||= [], e.contains && e.contains.includes("self")) throw Error("ERR: contains `self` is not supported at the top-level of a language.  See documentation.");
 		return e.classNameAliases = s(e.classNameAliases || {}), c(e);
 	}
-	function N7(e) {
-		return e ? e.endsWithParent || N7(e.starts) : !1;
+	function F7(e) {
+		return e ? e.endsWithParent || F7(e.starts) : !1;
 	}
-	function P7(e) {
+	function I7(e) {
 		return e.variants && !e.cachedVariants && (e.cachedVariants = e.variants.map(function(n) {
 			return s(e, { variants: null }, n);
-		})), e.cachedVariants ? e.cachedVariants : N7(e) ? s(e, { starts: e.starts ? s(e.starts) : null }) : Object.isFrozen(e) ? s(e) : e;
+		})), e.cachedVariants ? e.cachedVariants : F7(e) ? s(e, { starts: e.starts ? s(e.starts) : null }) : Object.isFrozen(e) ? s(e) : e;
 	}
-	var F7 = "11.11.1", I7 = class extends Error {
+	var L7 = "11.11.1", R7 = class extends Error {
 		constructor(e, n) {
 			super(e), this.name = "HTMLInjectionError", this.html = n;
 		}
-	}, L7 = o, R7 = s, z7 = Symbol("nomatch"), B7 = 7, V7 = function(e) {
+	}, z7 = o, B7 = s, V7 = Symbol("nomatch"), H7 = 7, U7 = function(e) {
 		let n = Object.create(null), o = Object.create(null), s = [], c = !0, l = "Could not find the language '{}', did you forget to load/include a language module?", u = {
 			disableAutodetect: !0,
 			name: "Plain text",
@@ -53237,13 +53237,13 @@ var props$4 = {
 			let r = d.languageDetectRe.exec(n);
 			if (r) {
 				let n = I(r[1]);
-				return n || (w7(l.replace("{}", r[1])), w7("Falling back to no-highlight mode for this block.", e)), n ? r[1] : "no-highlight";
+				return n || (E7(l.replace("{}", r[1])), E7("Falling back to no-highlight mode for this block.", e)), n ? r[1] : "no-highlight";
 			}
 			return n.split(/\s+/).find((e) => f(e) || I(e));
 		}
 		function g(e, n, r) {
 			let a = "", o = "";
-			typeof n == "object" ? (a = e, r = n.ignoreIllegals, o = n.language) : (T7("10.7.0", "highlight(lang, code, ...args) has been deprecated."), T7("10.7.0", "Please use highlight(code, options) instead.\nhttps://github.com/highlightjs/highlight.js/issues/2277"), o = e, a = n), r === void 0 && (r = !0);
+			typeof n == "object" ? (a = e, r = n.ignoreIllegals, o = n.language) : (D7("10.7.0", "highlight(lang, code, ...args) has been deprecated."), D7("10.7.0", "Please use highlight(code, options) instead.\nhttps://github.com/highlightjs/highlight.js/issues/2277"), o = e, a = n), r === void 0 && (r = !0);
 			let s = {
 				code: a,
 				language: o
@@ -53270,7 +53270,7 @@ var props$4 = {
 					let a = A.case_insensitive ? n[0].toLowerCase() : n[0], o = f(N, a);
 					if (o) {
 						let [e, s] = o;
-						if (F.addText(r), r = "", u[a] = (u[a] || 0) + 1, u[a] <= B7 && (R += s), e.startsWith("_")) r += n[0];
+						if (F.addText(r), r = "", u[a] = (u[a] || 0) + 1, u[a] <= H7 && (R += s), e.startsWith("_")) r += n[0];
 						else {
 							let r = A.classNameAliases[e] || e;
 							_(n[0], r);
@@ -53327,7 +53327,7 @@ var props$4 = {
 				if (e.endsWithParent) return b(e.parent, n, r);
 			}
 			function S(e) {
-				return N.matcher.regexIndex === 0 ? (L += e[0], 1) : (p7 = !0, 0);
+				return N.matcher.regexIndex === 0 ? (L += e[0], 1) : (h7 = !0, 0);
 			}
 			function C(e) {
 				let n = e[0], r = e.rule, o = new a(r), s = [r.__beforeBegin, r["on:begin"]];
@@ -53339,7 +53339,7 @@ var props$4 = {
 			}
 			function E(e) {
 				let n = e[0], a = r.substring(e.index), o = b(N, e, a);
-				if (!o) return z7;
+				if (!o) return V7;
 				let s = N;
 				N.endScope && N.endScope._wrap ? (g(), _(n, N.endScope._wrap)) : N.endScope && N.endScope._multi ? (g(), v(N.endScope, e)) : s.skip ? L += n : (s.returnEnd || s.excludeEnd || (L += n), g(), s.excludeEnd && (L = n));
 				do
@@ -53369,22 +53369,22 @@ var props$4 = {
 					throw e.mode = N, e;
 				} else if (a.type === "end") {
 					let e = E(a);
-					if (e !== z7) return e;
+					if (e !== V7) return e;
 				}
 				if (a.type === "illegal" && s === "") return L += "\n", 1;
 				if (B > 1e5 && B > a.index * 3) throw /* @__PURE__ */ Error("potential infinite loop, way more iterations than matches");
 				return L += s, s.length;
 			}
 			let A = I(e);
-			if (!A) throw C7(l.replace("{}", e)), Error("Unknown language: \"" + e + "\"");
-			let j = M7(A), M = "", N = s || j, P = {}, F = new d.__emitter(d);
+			if (!A) throw T7(l.replace("{}", e)), Error("Unknown language: \"" + e + "\"");
+			let j = P7(A), M = "", N = s || j, P = {}, F = new d.__emitter(d);
 			D();
-			let L = "", R = 0, z = 0, B = 0, p7 = !1;
+			let L = "", R = 0, z = 0, B = 0, h7 = !1;
 			try {
 				if (A.__emitTokens) A.__emitTokens(r, F);
 				else {
 					for (N.matcher.considerAll();;) {
-						B++, p7 ? p7 = !1 : N.matcher.considerAll(), N.matcher.lastIndex = z;
+						B++, h7 ? h7 = !1 : N.matcher.considerAll(), N.matcher.lastIndex = z;
 						let e = N.matcher.exec(r);
 						if (!e) break;
 						let n = r.substring(z, e.index), a = k(n, e);
@@ -53403,7 +53403,7 @@ var props$4 = {
 			} catch (n) {
 				if (n.message && n.message.includes("Illegal")) return {
 					language: e,
-					value: L7(r),
+					value: z7(r),
 					illegal: !0,
 					relevance: 0,
 					_illegalBy: {
@@ -53417,7 +53417,7 @@ var props$4 = {
 				};
 				if (c) return {
 					language: e,
-					value: L7(r),
+					value: z7(r),
 					illegal: !1,
 					relevance: 0,
 					errorRaised: n,
@@ -53429,7 +53429,7 @@ var props$4 = {
 		}
 		function C(e) {
 			let n = {
-				value: L7(e),
+				value: z7(e),
 				illegal: !1,
 				relevance: 0,
 				_top: u,
@@ -53465,7 +53465,7 @@ var props$4 = {
 				console.log("Element previously highlighted. To highlight again, first unset `dataset.highlighted`.", e);
 				return;
 			}
-			if (e.children.length > 0 && (d.ignoreUnescapedHTML || (console.warn("One of your code blocks includes unescaped HTML. This is a potentially serious security risk."), console.warn("https://github.com/highlightjs/highlight.js/wiki/security"), console.warn("The element with unescaped HTML:"), console.warn(e)), d.throwUnescapedHTML)) throw new I7("One of your code blocks includes unescaped HTML.", e.innerHTML);
+			if (e.children.length > 0 && (d.ignoreUnescapedHTML || (console.warn("One of your code blocks includes unescaped HTML. This is a potentially serious security risk."), console.warn("https://github.com/highlightjs/highlight.js/wiki/security"), console.warn("The element with unescaped HTML:"), console.warn(e)), d.throwUnescapedHTML)) throw new R7("One of your code blocks includes unescaped HTML.", e.innerHTML);
 			n = e;
 			let a = n.textContent, o = r ? g(a, {
 				language: r,
@@ -53485,13 +53485,13 @@ var props$4 = {
 			});
 		}
 		function O(e) {
-			d = R7(d, e);
+			d = B7(d, e);
 		}
 		let k = () => {
-			M(), T7("10.6.0", "initHighlighting() deprecated.  Use highlightAll() now.");
+			M(), D7("10.6.0", "initHighlighting() deprecated.  Use highlightAll() now.");
 		};
 		function A() {
-			M(), T7("10.6.0", "initHighlightingOnLoad() deprecated.  Use highlightAll() now.");
+			M(), D7("10.6.0", "initHighlightingOnLoad() deprecated.  Use highlightAll() now.");
 		}
 		let j = !1;
 		function M() {
@@ -53509,7 +53509,7 @@ var props$4 = {
 			try {
 				o = a(e);
 			} catch (e) {
-				if (C7("Language definition for '{}' could not be registered.".replace("{}", r)), c) C7(e);
+				if (T7("Language definition for '{}' could not be registered.".replace("{}", r)), c) T7(e);
 				else throw e;
 				o = u;
 			}
@@ -53544,7 +53544,7 @@ var props$4 = {
 		function B(e) {
 			z(e), s.push(e);
 		}
-		function p7(e) {
+		function h7(e) {
 			let n = s.indexOf(e);
 			n !== -1 && s.splice(n, 1);
 		}
@@ -53555,7 +53555,7 @@ var props$4 = {
 			});
 		}
 		function H(e) {
-			return T7("10.7.0", "highlightBlock will be removed entirely in v12.0"), T7("10.7.0", "Please use highlightElement now."), D(e);
+			return D7("10.7.0", "highlightBlock will be removed entirely in v12.0"), D7("10.7.0", "Please use highlightElement now."), D(e);
 		}
 		for (let n in Object.assign(e, {
 			highlight: g,
@@ -53572,14 +53572,14 @@ var props$4 = {
 			getLanguage: I,
 			registerAliases: L,
 			autoDetection: R,
-			inherit: R7,
+			inherit: B7,
 			addPlugin: B,
-			removePlugin: p7
+			removePlugin: h7
 		}), e.debugMode = function() {
 			c = !1;
 		}, e.safeMode = function() {
 			c = !0;
-		}, e.versionString = F7, e.regex = {
+		}, e.versionString = L7, e.regex = {
 			concat: b,
 			lookahead: _,
 			either: S,
@@ -53587,8 +53587,8 @@ var props$4 = {
 			anyNumberOfTimes: v
 		}, J) typeof J[n] == "object" && r(J[n]);
 		return Object.assign(e, J), e;
-	}, H7 = V7({});
-	H7.newInstance = () => V7({}), n.exports = H7, H7.HighlightJS = H7, H7.default = H7;
+	}, W7 = U7({});
+	W7.newInstance = () => U7({}), n.exports = W7, W7.HighlightJS = W7, W7.default = W7;
 })), require__1c = /* @__PURE__ */ __commonJSMin(((exports, n) => {
 	function r(e) {
 		let n = "[A-Za-zА-Яа-яёЁ_][A-Za-zА-Яа-яёЁ_0-9]+", r = "далее возврат вызватьисключение выполнить для если и из или иначе иначеесли исключение каждого конецесли конецпопытки конеццикла не новый перейти перем по пока попытка прервать продолжить тогда цикл экспорт ", a = "null истина ложь неопределено", o = e.inherit(e.NUMBER_MODE), s = {
@@ -62074,7 +62074,7 @@ var props$4 = {
 			keywords: "prototype",
 			className: "property",
 			relevance: 0
-		}, p7 = {
+		}, h7 = {
 			match: [
 				/get|set/,
 				/\s+/,
@@ -62234,7 +62234,7 @@ var props$4 = {
 				z,
 				L,
 				N,
-				p7,
+				h7,
 				{ match: /\$[(.]/ }
 			]
 		};
@@ -69216,7 +69216,7 @@ var props$4 = {
 			className: "operator",
 			relevance: 0,
 			variants: [{ match: x }, { match: `\\.(\\.|${b})+` }]
-		}, R = [I, L], z = "([0-9]_*)+", B = "([0-9a-fA-F]_*)+", p7 = {
+		}, R = [I, L], z = "([0-9]_*)+", B = "([0-9a-fA-F]_*)+", h7 = {
 			className: "number",
 			relevance: 0,
 			variants: [
@@ -69260,7 +69260,7 @@ var props$4 = {
 				G("##"),
 				G("###")
 			]
-		}, m7 = [e.BACKSLASH_ESCAPE, {
+		}, g7 = [e.BACKSLASH_ESCAPE, {
 			begin: /\[/,
 			end: /\]/,
 			relevance: 0,
@@ -69268,19 +69268,19 @@ var props$4 = {
 		}], q = {
 			begin: /\/[^\s](?=[^/\n]*\/)/,
 			end: /\//,
-			contains: m7
+			contains: g7
 		}, J = (e) => {
 			let n = o(e, /\//), r = o(/\//, e);
 			return {
 				begin: n,
 				end: r,
-				contains: [...m7, {
+				contains: [...g7, {
 					scope: "comment",
 					begin: `#(?!.*${r})`,
 					end: /$/
 				}]
 			};
-		}, h7 = {
+		}, _7 = {
 			scope: "regexp",
 			variants: [
 				J("###"),
@@ -69291,14 +69291,14 @@ var props$4 = {
 		}, Y = { match: o(/`/, w, /`/) }, X = {
 			className: "variable",
 			match: /\$\d+/
-		}, g7 = {
+		}, v7 = {
 			className: "variable",
 			match: `\\$${C}+`
 		}, Z = [
 			Y,
 			X,
-			g7
-		], _7 = {
+			v7
+		], y7 = {
 			match: /(@|#(un)?)available/,
 			scope: "keyword",
 			starts: { contains: [{
@@ -69307,7 +69307,7 @@ var props$4 = {
 				keywords: D,
 				contains: [
 					...R,
-					p7,
+					h7,
 					K
 				]
 			}] }
@@ -69317,11 +69317,11 @@ var props$4 = {
 		}, $ = {
 			scope: "meta",
 			match: o(/@/, w)
-		}, v7 = [
-			_7,
+		}, b7 = [
+			y7,
 			Q,
 			$
-		], y7 = {
+		], x7 = {
 			match: a(/\b[A-Z]/),
 			relevance: 0,
 			contains: [
@@ -69347,48 +69347,48 @@ var props$4 = {
 					relevance: 0
 				}
 			]
-		}, b7 = {
+		}, S7 = {
 			begin: /</,
 			end: />/,
 			keywords: j,
 			contains: [
 				...s,
 				...M,
-				...v7,
+				...b7,
 				I,
-				y7
+				x7
 			]
 		};
-		y7.contains.push(b7);
-		let x7 = {
+		x7.contains.push(S7);
+		let C7 = {
 			match: o(w, /\s*:/),
 			keywords: "_|0",
 			relevance: 0
-		}, S7 = {
+		}, w7 = {
 			begin: /\(/,
 			end: /\)/,
 			relevance: 0,
 			keywords: j,
 			contains: [
 				"self",
-				x7,
+				C7,
 				...s,
-				h7,
+				_7,
 				...M,
 				...F,
 				...R,
-				p7,
+				h7,
 				K,
 				...Z,
-				...v7,
-				y7
+				...b7,
+				x7
 			]
-		}, C7 = {
+		}, T7 = {
 			begin: /</,
 			end: />/,
 			keywords: "repeat each",
-			contains: [...s, y7]
-		}, w7 = {
+			contains: [...s, x7]
+		}, E7 = {
 			begin: c(a(o(w, /\s*:/)), a(o(w, /\s+/, w, /\s*:/))),
 			end: /:/,
 			relevance: 0,
@@ -69399,24 +69399,24 @@ var props$4 = {
 				className: "params",
 				match: w
 			}]
-		}, T7 = {
+		}, D7 = {
 			begin: /\(/,
 			end: /\)/,
 			keywords: j,
 			contains: [
-				w7,
+				E7,
 				...s,
 				...M,
 				...R,
-				p7,
+				h7,
 				K,
-				...v7,
-				y7,
-				S7
+				...b7,
+				x7,
+				w7
 			],
 			endsParent: !0,
 			illegal: /["']/
-		}, E7 = {
+		}, O7 = {
 			match: [
 				/(func|macro)/,
 				/\s+/,
@@ -69427,21 +69427,21 @@ var props$4 = {
 				3: "title.function"
 			},
 			contains: [
-				C7,
 				T7,
+				D7,
 				n
 			],
 			illegal: [/\[/, /%/]
-		}, D7 = {
+		}, k7 = {
 			match: [/\b(?:subscript|init[?!]?)/, /\s*(?=[<(])/],
 			className: { 1: "keyword" },
 			contains: [
-				C7,
 				T7,
+				D7,
 				n
 			],
 			illegal: /\[|%/
-		}, O7 = {
+		}, A7 = {
 			match: [
 				/operator/,
 				/\s+/,
@@ -69451,7 +69451,7 @@ var props$4 = {
 				1: "keyword",
 				3: "title"
 			}
-		}, k7 = {
+		}, j7 = {
 			begin: [
 				/precedencegroup/,
 				/\s+/,
@@ -69461,10 +69461,10 @@ var props$4 = {
 				1: "keyword",
 				3: "title"
 			},
-			contains: [y7],
+			contains: [x7],
 			keywords: [...g, ...m],
 			end: /}/
-		}, A7 = {
+		}, M7 = {
 			match: [
 				/class\b/,
 				/\s+/,
@@ -69477,7 +69477,7 @@ var props$4 = {
 				3: "keyword",
 				5: "title.function"
 			}
-		}, j7 = {
+		}, N7 = {
 			match: [
 				/class\b/,
 				/\s+/,
@@ -69487,7 +69487,7 @@ var props$4 = {
 				1: "keyword",
 				3: "keyword"
 			}
-		}, M7 = {
+		}, P7 = {
 			begin: [
 				/(struct|protocol|class|extension|enum|actor)/,
 				/\s+/,
@@ -69500,7 +69500,7 @@ var props$4 = {
 			},
 			keywords: j,
 			contains: [
-				C7,
+				T7,
 				...M,
 				{
 					begin: /:/,
@@ -69521,7 +69521,7 @@ var props$4 = {
 				...M,
 				...F,
 				...R,
-				p7,
+				h7,
 				K,
 				...Z
 			];
@@ -69536,29 +69536,29 @@ var props$4 = {
 			keywords: j,
 			contains: [
 				...s,
-				E7,
-				D7,
-				A7,
-				j7,
-				M7,
 				O7,
 				k7,
+				M7,
+				N7,
+				P7,
+				A7,
+				j7,
 				{
 					beginKeywords: "import",
 					end: /$/,
 					contains: [...s],
 					relevance: 0
 				},
-				h7,
+				_7,
 				...M,
 				...F,
 				...R,
-				p7,
+				h7,
 				K,
 				...Z,
-				...v7,
-				y7,
-				S7
+				...b7,
+				x7,
+				w7
 			]
 		};
 	}
@@ -70312,7 +70312,7 @@ var props$4 = {
 			keywords: "prototype",
 			className: "property",
 			relevance: 0
-		}, p7 = {
+		}, h7 = {
 			match: [
 				/get|set/,
 				/\s+/,
@@ -70472,7 +70472,7 @@ var props$4 = {
 				z,
 				L,
 				N,
-				p7,
+				h7,
 				{ match: /\$[(.]/ }
 			]
 		};
@@ -73651,10 +73651,9 @@ window.DWFCHATCONFIG = {
 	viewName: "",
 	obj: {}
 };
-function initChatWidget(e) {
-	let n = createApp(App_default, e);
-	n.use(index).use(index$1);
-	let r = document.createElement("div");
-	return r.id = "my-chat-widget-container", document.body.appendChild(r), n.mount(r), { openRobot: n.config.globalProperties.openRobot };
-}
-export { initChatWidget };
+var app = createApp(App_default);
+app.use(index).use(index$1);
+var container = document.createElement("div");
+container.id = "my-chat-widget-container", document.body.appendChild(container), app.mount(container);
+var main_default = { openRobot: app.config.globalProperties.openRobot };
+export { main_default as default };

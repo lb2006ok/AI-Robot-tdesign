@@ -262,7 +262,7 @@ const handleData = async () => {
   currentAbortController = new AbortController();
   const lastItem = chatList.value[0];
   // 准备请求数据
-  agentConfig["knowledge_filters"].collection_id = window.DWFCHATCONFIG.getCollectionId();
+  agentConfig["knowledge_filters"].collection_id = window.DWFCHATCONFIG.collectionId;
   const requestData = {
     message: inputValue.value,
     stream: true,
