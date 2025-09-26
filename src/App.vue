@@ -1,8 +1,12 @@
 <template>
-  <t-space align="center">
-    <t-button theme="primary" @click="visible = true">AI助手悬窗展示</t-button>
-  </t-space>
-  <t-drawer v-model:visible="visible" :footer="false" size="480px" :close-btn="true" class="drawer-box">
+  <div class="chatbot-button">
+    <t-button shape="circle" theme="primary" size="large" @click="visible = true" id="DWFRobot">
+      <template #icon>
+        <animation-1-icon/>
+      </template>
+    </t-button>
+  </div>
+  <t-drawer v-model:visible="visible" :footer="false" size="680px" :close-btn="true" class="drawer-box">
     <template #header>
       <t-avatar size="32px" shape="circle" image="https://tdesign.gtimg.com/site/chat-avatar.png"></t-avatar>
       <span class="title">Hi, &nbsp;我是AI</span>
@@ -19,18 +23,39 @@
             :text-loading="index === 0 && loading"
             :content="item.content"
             :variant="getStyle(item.role)"
-            :reasoning="{
-            expandIconPlacement: 'right',
-            // onExpandChange: handleChange(value, { index }),
-            // collapsePanelProps: {
-            //   header: renderHeader(index === 0 && isStreamLoad && !item.content, item),
-            //   content: renderReasoningContent(item.reasoning),
-            // },
-          }"
+            :reasoning="false"
         >
+          <template #content>
+            <t-chat-reasoning
+                v-if="item.reasoning?.length > 0"
+                expand-icon-placement="right"
+            >
+              <template #header>
+                <t-chat-loading v-if="isStreamLoad" text="思考中..."/>
+                <div v-else style="display:flex;align-items:center">
+                  <CheckCircleIcon
+                      style="
+                          color: green;
+                          font-size: '20px';
+                          margin-right: '8px'
+                        "
+                  />
+                  <span>{{ item.duration ? `已深度思考(用时${item.duration}秒)` : '已深度思考' }}</span>
+                </div>
+              </template>
+              <t-chat-content :content="item.reasoning" role="assistant"/>
+            </t-chat-reasoning>
+            <t-chat-content v-if="item.content.length > 0" :content="item.content"/>
+          </template>
         </t-chat-item>
       </template>
       <template #footer>
+        <t-button theme="primary" @click="openForm">
+          <template #icon>
+            <add-icon/>
+          </template>
+          打开表单
+        </t-button>
         <t-chat-sender
             v-model="inputValue"
             :loading="isStreamLoad"
@@ -62,16 +87,60 @@
   </t-drawer>
 </template>
 <script setup>
-import {ref} from 'vue';
-import {SystemSumIcon} from 'tdesign-icons-vue-next';
-import {CheckCircleIcon} from 'tdesign-icons-vue-next';
+import {ref, toRefs, defineProps, getCurrentInstance} from 'vue';
+import {SystemSumIcon, Animation1Icon, CheckCircleIcon, AddIcon} from 'tdesign-icons-vue-next';
+import {fetchEventSource} from '@microsoft/fetch-event-source';
 
+const props = defineProps(['apiUrl', 'title', 'obj', 'form'])
+const {apiUrl, title} = toRefs(props);
 const fetchCancel = ref(null);
 const loading = ref(false);
 const inputValue = ref('');
 // 流式数据加载中
 const isStreamLoad = ref(false);
 const visible = ref(false);
+const agentConfig = {
+  "id": "xxxx",
+  "name": "LightRagAgent",
+  "description": "Agent for lightrag tasks",
+  "knowledge_type": "aperag",
+  "knowledge_filters": {
+    "collection_id": ''
+  },
+  "chat_model_config": {
+    "service_provider": "openailike",
+    "id": "Qwen/Qwen2.5-7B-Instruct",
+    "api_key": "20676974-d271-4004-bf7d-472627477901",
+    "base_url": "https://api-inference.modelscope.cn/v1/",
+    "temperature": 0.7,
+    "max_tokens": 8192
+  },
+  "tools": [
+    {
+      "type": "func",
+      "module_name": "agno.tools.duckduckgo",
+      "class_name": "DuckDuckGoTools",
+      "params": {
+        "enable_search": true,
+        "enable_news": true,
+        "all": true,
+        "modifier": "",
+        "fixed_max_results": "",
+        "proxy": "",
+        "timeout": 10,
+        "verify_ssl": true
+      }
+    }
+  ],
+  "prompts": {
+    "default": {
+      "system": "你具备专业的印刷知识，能够根据客户需求提供准确、详细的报价计算。\n",
+      "introduction": "1. 查询知识库，搜索相关的数据\n2. 从网络搜索，调用DuckDuckGoTools"
+    }
+  }
+};
+let currentAbortController = null;
+
 // 滚动到底部
 const operation = function (type, options) {
   console.log(type, options);
@@ -111,80 +180,32 @@ const isChecked = ref(false);
 const checkClick = () => {
   isChecked.value = !isChecked.value;
 };
+
+const app = getCurrentInstance();
+app.appContext.config.globalProperties.openRobot = (config) => {
+  window.DWFCHATCONFIG.collectionId = config.collectionId;
+  window.DWFCHATCONFIG.targetClass = config.targetClass;
+  window.DWFCHATCONFIG.viewName = config.viewName;
+  window.DWFCHATCONFIG.obj = config.obj;
+  visible.value = true;
+};
+
 const handleChange = (value, {index}) => {
   console.log('handleChange', value, index);
 };
-/**
- * 渲染推理模块的头部自定义内容
- * @param {boolean} flag - 思维链内容是否加载中
- * @param {string} endText - 思维链加载完成时显示的文本
- * @returns {JSX.Element} 返回对应的头部组件
- */
-// const renderHeader = (flag, item) => {
-//   if (flag) {
-//     return <t-chat-loading text="思考中..."/>;
-//   }
-//   const endText = item.duration ? `已深度思考(用时${item.duration}秒)` : '已深度思考';
-//   return (
-//       <div style="display:flex;align-items:center">
-//         <CheckCircleIcon
-//             style={{
-//               color: 'var(--td-success-color-5)',
-//               fontSize: '20px',
-//               marginRight: '8px',
-//             }}
-//         />
-//         <span>{endText}</span>
-//       </div>
-//   );
-// };
-// const renderReasoningContent = (reasoningContent) => <t-chat-content content={reasoningContent} role="assistant"/>;
 // 倒序渲染
 const chatList = ref([
-  {
-    content: `模型由<span>hunyuan</span>变为<span>GPT4</span>`,
-    role: 'model-change',
-    reasoning: '',
-  },
-  {
-    avatar: 'https://tdesign.gtimg.com/site/chat-avatar.png',
-    name: 'TDesignAI',
-    datetime: '今天16:38',
-    reasoning: `嗯，用户问牛顿第一定律是不是适用于所有参考系。首先，我得先回忆一下牛顿第一定律的内容。牛顿第一定律，也就是惯性定律，说物体在没有外力作用时会保持静止或匀速直线运动。也就是说，保持原来的运动状态。
-
-那问题来了，这个定律是否适用于所有参考系呢？记得以前学过的参考系分惯性系和非惯性系。惯性系里，牛顿定律成立；非惯性系里，可能需要引入惯性力之类的修正。所以牛顿第一定律应该只在惯性参考系中成立，而在非惯性系中不适用，比如加速的电梯或者旋转的参考系，这时候物体会有看似无外力下的加速度，所以必须引入假想的力来解释。`,
-    content: `牛顿第一定律（惯性定律）**并不适用于所有参考系**，它只在**惯性参考系**中成立。以下是关键点：
-
----
-
-### **1. 牛顿第一定律的核心**
-- **内容**：物体在不受外力（或合力为零）时，将保持静止或匀速直线运动状态。
-- **本质**：定义了惯性系的存在——即存在一类参考系，在其中惯性定律成立。
-
----
-
-### **2. 惯性系 vs 非惯性系**
-- **惯性参考系**：牛顿定律直接成立的参考系。
-  - **例子**：相对于遥远恒星静止或匀速直线运动的参考系；地面参考系（近似惯性系，忽略地球自转）。
-  - **特点**：物体加速度仅由真实力（如重力、摩擦力）引起。
-
-- **非惯性参考系**：牛顿定律不直接成立的参考系（如有加速度或旋转的参考系）。
-  - **例子**：加速行驶的汽车、旋转的圆盘。
-  - **现象**：物体会表现出“虚假”加速度（如急刹车时乘客前倾），看似无外力却改变运动状态。
-  - **修正方法**：引入**惯性力**（如离心力、科里奥利力），使牛顿定律形式上成立。
-
----`,
-    role: 'assistant',
-    duration: 10,
-  },
-  {
-    avatar: 'https://tdesign.gtimg.com/site/avatar.jpg',
-    name: '自己',
-    datetime: '今天16:38',
-    content: '牛顿第一定律是否适用于所有参考系？',
-    role: 'user',
-    reasoning: '',
-  },
+  // {
+  //   avatar: 'https://tdesign.gtimg.com/site/avatar.jpg',
+  //   name: '自己',
+  //   datetime: '今天16:38',
+  //   content: `
+  //   ---
+  //   ---
+  //   `,
+  //   role: 'assistant',
+  //   reasoning: '',
+  // },
 ]);
 const clearConfirm = function () {
   chatList.value = [];
@@ -223,76 +244,109 @@ const inputEnter = function () {
   handleData();
   inputValue.value = '';
 };
-// const fetchSSE = async (fetchFn, options) => {
-//   const response = await fetchFn();
-//   const {success, fail, complete} = options;
-//   // 如果不 ok 说明有请求错误
-//   if (!response.ok) {
-//     complete?.(false, response.statusText);
-//     fail?.();
-//     return;
-//   }
-//   const reader = response?.body?.getReader();
-//   const decoder = new TextDecoder();
-//   if (!reader) return;
-//
-//   reader.read().then(function processText({done, value}) {
-//     if (done) {
-//       // 正常的返回
-//       complete?.(true);
-//       return;
-//     }
-//     const chunk = decoder.decode(value, {stream: true});
-//     const buffers = chunk.toString().split(/\r?\n/);
-//     const jsonData = JSON.parse(buffers);
-//     success(jsonData);
-//     reader.read().then(processText);
-//   });
-// };
+// 简化的事件日志 - 只输出到控制台
+const addEventLog = (message) => {
+  const now = new Date();
+  const timeString = now.toLocaleTimeString('zh-CN');
+  console.log(`[${timeString}] ${message}`);
+}
+
 const handleData = async () => {
   loading.value = true;
   isStreamLoad.value = true;
-//   const lastItem = chatList.value[0];
-//   const mockedData = {
-//     reasoning: `嗯，用户问牛顿第一定律是不是适用于所有参考系。首先，我得先回忆一下牛顿第一定律的内容。牛顿第一定律，也就是惯性定律，说物体在没有外力作用时会保持静止或匀速直线运动。也就是说，保持原来的运动状态。
-//
-// 那问题来了，这个定律是否适用于所有参考系呢？记得以前学过的参考系分惯性系和非惯性系。惯性系里，牛顿定律成立；非惯性系里，可能需要引入惯性力之类的修正。所以牛顿第一定律应该只在惯性参考系中成立，而在非惯性系中不适用，比如加速的电梯或者旋转的参考系，这时候物体会有看似无外力下的加速度，所以必须引入假想的力来解释。`,
-//     content: `牛顿第一定律（惯性定律）**并不适用于所有参考系**，它只在**惯性参考系**中成立。以下是关键点：
-//
-// ---
-//
-// ### **1. 牛顿第一定律的核心**
-// - **内容**：物体在不受外力（或合力为零）时，将保持静止或匀速直线运动状态。
-// - **本质**：定义了惯性系的存在——即存在一类参考系，在其中惯性定律成立。`,
-//   };
-  // const mockResponse = new MockSSEResponse(mockedData);
-  // fetchCancel.value = mockResponse;
-  // await fetchSSE(
-  //     () => {
-  //       return mockResponse.getResponse();
-  //     },
-  //     {
-  //       success(result) {
-  //         console.log('success', result);
-  //         loading.value = false;
-  //         lastItem.reasoning += result.delta.reasoning_content;
-  //         lastItem.content += result.delta.content;
-  //       },
-  //       complete(isOk, msg) {
-  //         if (!isOk) {
-  //           lastItem.role = 'error';
-  //           lastItem.content = msg;
-  //           lastItem.reasoning = msg;
-  //         }
-  //         // 显示用时xx秒，业务侧需要自行处理
-  //         lastItem.duration = 20;
-  //         // 控制终止按钮
-  //         isStreamLoad.value = false;
-  //         loading.value = false;
-  //       },
-  //     },
-  // );
+
+  if (currentAbortController) {
+    currentAbortController.abort();
+  }
+  // 创建新的AbortController
+  currentAbortController = new AbortController();
+  const lastItem = chatList.value[0];
+  // 准备请求数据
+  agentConfig["knowledge_filters"].collection_id = window.DWFCHATCONFIG.getCollectionId();
+  const requestData = {
+    message: inputValue.value,
+    stream: true,
+    agent_config: agentConfig
+  };
+
+  try {
+    fetchEventSource(apiUrl.value, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'bearer sk-84362eec89484c13aadd34de7a7834aa'
+      },
+      body: JSON.stringify(requestData),
+      signal: currentAbortController.signal,
+      async onopen(response) {
+        addEventLog('连接成功，开始接收数据');
+        // if (response.ok && response.headers.get('content-type') === EventStreamContentType) {
+        //   return; // everything's good
+        // } else if (response.status >= 400 && response.status < 500 && response.status !== 429) {
+        //   // client-side errors are usually non-retriable:
+        //   throw new FatalError();
+        // } else {
+        //   throw new RetriableError();
+        // }
+      },
+      onmessage(result) {
+        let data = JSON.parse(result.data);
+        loading.value = false;
+        lastItem.reasoning += data.reasoning_content;
+        lastItem.content += data.content;
+        // if (!isOk) {
+        //   lastItem.role = 'error';
+        //   lastItem.content = msg;
+        //   lastItem.reasoning = msg;
+        // }
+        // 显示用时xx秒，业务侧需要自行处理
+        lastItem.duration = 20;
+        // 控制终止按钮
+        isStreamLoad.value = false;
+        loading.value = false;
+        // if (msg.event === 'FatalError') {
+        //   throw addEventLog(msg.data);
+        // }
+      },
+      onclose() {
+        // lastItem.content += '<t-button theme="primary"><template #icon><add-icon /></template>打开表单</t-button>';
+        // if the server closes the connection unexpectedly, retry:
+        // throw new RetriableError();
+      },
+      onerror(err) {
+        addEventLog(err);
+      }
+    });
+    // 如果循环正常结束，也移除生成指示器
+    isStreamLoad.value = false;
+
+  } catch (error) {
+    if (error.name === 'AbortError') {
+      console.log('请求已被中止');
+      addEventLog('请求已被用户中止');
+    } else {
+      console.error('请求错误:', error);
+      // if (currentAIResponseElement) {
+      //   currentAIResponseElement.textContent += `\n\n错误: ${error.message}`;
+      // }
+      addEventLog(`请求错误: ${error.message}`);
+
+      // 移除生成中的提示
+      isStreamLoad.value = false;
+    }
+  } finally {
+    currentAbortController = null;
+    isStreamLoad.value = false;
+  }
 };
+
+const openForm = () => {
+  window.DWFCHATCONFIG.dwf_ctx.openForm(window.DWFCHATCONFIG.targetClass, window.DWFCHATCONFIG.viewName, {
+    initScript: `return {
+      obj: ${window.DWFCHATCONFIG.obj}
+    }`
+  })
+}
 </script>
 <style lang="less">
 .title {
@@ -301,6 +355,14 @@ const handleData = async () => {
   color: var(--td-text-color-primary);
   font-weight: 600;
   line-height: 28px;
+}
+
+.chatbot-button {
+  position: fixed;
+  cursor: pointer;
+  bottom: 10px;
+  right: 10px;
+  z-index: 2147483647;
 }
 
 .drawer-box {

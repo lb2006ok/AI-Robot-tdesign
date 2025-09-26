@@ -18,5 +18,14 @@ export default defineConfig({
         }
       }
     }
+  },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://192.168.30.9:7777',
+        changeOrigin: true, // 改变请求头中的host为目标地址的origin
+        rewrite: (path) => path.replace(/^\/api/, '') // 重写路径（可选）
+      }
+    }
   }
 })
