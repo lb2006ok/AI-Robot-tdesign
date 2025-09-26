@@ -187,6 +187,7 @@ app.appContext.config.globalProperties.openRobot = (config) => {
   window.DWFCHATCONFIG.targetClass = config.targetClass;
   window.DWFCHATCONFIG.viewName = config.viewName;
   window.DWFCHATCONFIG.obj = config.obj;
+  window.DWFCHATCONFIG.dwf_ctx = config.dwf_ctx;
   visible.value = true;
 };
 
