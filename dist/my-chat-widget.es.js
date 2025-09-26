@@ -1552,7 +1552,7 @@ var _hoisted_1 = { class: "chatbot-button" }, _hoisted_2 = {
 			E.value = !E.value;
 		}, k = getCurrentInstance();
 		k.appContext.config.globalProperties.openRobot = (e) => {
-			window.DWFCHATCONFIG.collectionId = e.collectionId, window.DWFCHATCONFIG.targetClass = e.targetClass, window.DWFCHATCONFIG.viewName = e.viewName, window.DWFCHATCONFIG.obj = e.obj, u.value = !0;
+			window.DWFCHATCONFIG.collectionId = e.collectionId, window.DWFCHATCONFIG.targetClass = e.targetClass, window.DWFCHATCONFIG.viewName = e.viewName, window.DWFCHATCONFIG.obj = e.obj, window.DWFCHATCONFIG.dwf_ctx = e.dwf_ctx, u.value = !0;
 		};
 		let A = ref([]), j = function() {
 			A.value = [];
