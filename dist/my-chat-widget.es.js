@@ -73655,6 +73655,6 @@ function initChatWidget(e) {
 	let n = createApp(App_default, e);
 	n.use(index).use(index$1);
 	let r = document.createElement("div");
-	return r.id = "my-chat-widget-container", document.body.appendChild(r), n.mount(r), n;
+	return r.id = "my-chat-widget-container", document.body.appendChild(r), n.mount(r), { openRobot: n.config.globalProperties.openRobot };
 }
 export { initChatWidget };
