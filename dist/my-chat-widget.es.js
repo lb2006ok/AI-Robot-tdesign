@@ -1493,11 +1493,10 @@ var _hoisted_1 = { class: "chatbot-button" }, _hoisted_2 = {
 	props: [
 		"apiUrl",
 		"title",
-		"obj",
-		"form"
+		"placement"
 	],
 	setup(e) {
-		let { apiUrl: n, title: a } = toRefs(e), o = ref(null), s = ref(!1), c = ref(""), l = ref(!1), u = ref(!1), d = {
+		let { apiUrl: n, title: a, placement: o } = toRefs(e), s = ref(null), c = ref(!1), l = ref(""), u = ref(!1), d = ref(!1), y = {
 			id: "xxxx",
 			name: "LightRagAgent",
 			description: "Agent for lightrag tasks",
@@ -1530,9 +1529,9 @@ var _hoisted_1 = { class: "chatbot-button" }, _hoisted_2 = {
 				system: "你具备专业的印刷知识，能够根据客户需求提供准确、详细的报价计算。\n",
 				introduction: "1. 查询知识库，搜索相关的数据\n2. 从网络搜索，调用DuckDuckGoTools"
 			} }
-		}, y = null, x = function(e, n) {
+		}, x = null, S = function(e, n) {
 			console.log(e, n);
-		}, S = [
+		}, C = [
 			{
 				label: "默认模型",
 				value: "default"
@@ -1545,29 +1544,29 @@ var _hoisted_1 = { class: "chatbot-button" }, _hoisted_2 = {
 				label: "混元",
 				value: "hunyuan"
 			}
-		], C = ref({
+		], w = ref({
 			label: "默认模型",
 			value: "default"
-		}), w = (e) => e === "assistant" ? "outline" : e === "user" ? "base" : "text", T = ref(!1), E = ref(!1), O = () => {
-			E.value = !E.value;
-		}, k = getCurrentInstance();
-		k.appContext.config.globalProperties.openRobot = (e) => {
-			window.DWFCHATCONFIG.collectionId = e.collectionId, window.DWFCHATCONFIG.targetClass = e.targetClass, window.DWFCHATCONFIG.viewName = e.viewName, window.DWFCHATCONFIG.obj = e.obj, window.DWFCHATCONFIG.dwf_ctx = e.dwf_ctx, u.value = !0;
+		}), T = (e) => e === "assistant" ? "outline" : e === "user" ? "base" : "text", E = ref(!1), O = ref(!1), k = () => {
+			O.value = !O.value;
+		}, A = getCurrentInstance();
+		A.appContext.config.globalProperties.openRobot = (e) => {
+			window.DWFCHATCONFIG.collectionId = e.collectionId, window.DWFCHATCONFIG.targetClass = e.targetClass, window.DWFCHATCONFIG.viewName = e.viewName, window.DWFCHATCONFIG.obj = e.obj, window.DWFCHATCONFIG.dwf_ctx = e.dwf_ctx, window.DWFCHATCONFIG.onopen = e.onopen, window.DWFCHATCONFIG.onmessage = e.onmessage, window.DWFCHATCONFIG.onclose = e.onclose, window.DWFCHATCONFIG.onerror = e.onerror, d.value = !0;
 		};
-		let A = ref([]), j = function() {
-			A.value = [];
-		}, M = function() {
-			o.value && (o.value.controller.close(), s.value = !1, l.value = !1);
+		let j = ref([]), M = function() {
+			j.value = [];
 		}, N = function() {
-			if (l.value || !c.value) return;
+			s.value && (s.value.controller.close(), c.value = !1, u.value = !1);
+		}, P = function() {
+			if (u.value || !l.value) return;
 			let e = {
 				avatar: "https://tdesign.gtimg.com/site/avatar.jpg",
 				name: "自己",
 				datetime: (/* @__PURE__ */ new Date()).toDateString(),
-				content: c.value,
+				content: l.value,
 				role: "user"
 			};
-			A.value.unshift(e);
+			j.value.unshift(e);
 			let n = {
 				avatar: "https://tdesign.gtimg.com/site/chat-avatar.png",
 				name: "TDesignAI",
@@ -1576,18 +1575,18 @@ var _hoisted_1 = { class: "chatbot-button" }, _hoisted_2 = {
 				reasoning: "",
 				role: "assistant"
 			};
-			A.value.unshift(n), F(), c.value = "";
-		}, P = (e) => {
+			j.value.unshift(n), I(), l.value = "";
+		}, F = (e) => {
 			let n = (/* @__PURE__ */ new Date()).toLocaleTimeString("zh-CN");
 			console.log(`[${n}] ${e}`);
-		}, F = async () => {
-			s.value = !0, l.value = !0, y && y.abort(), y = new AbortController();
-			let e = A.value[0];
-			d.knowledge_filters.collection_id = window.DWFCHATCONFIG.collectionId;
+		}, I = async () => {
+			c.value = !0, u.value = !0, x && x.abort(), x = new AbortController();
+			let e = j.value[0];
+			y.knowledge_filters.collection_id = window.DWFCHATCONFIG.collectionId;
 			let r = {
-				message: c.value,
+				message: l.value,
 				stream: !0,
-				agent_config: d
+				agent_config: y
 			};
 			try {
 				fetchEventSource(n.value, {
@@ -1597,111 +1596,114 @@ var _hoisted_1 = { class: "chatbot-button" }, _hoisted_2 = {
 						Authorization: "bearer sk-84362eec89484c13aadd34de7a7834aa"
 					},
 					body: JSON.stringify(r),
-					signal: y.signal,
+					signal: x.signal,
 					async onopen(e) {
-						P("连接成功，开始接收数据");
+						F("连接成功，开始接收数据"), window.DWFCHATCONFIG.onopen && typeof window.DWFCHATCONFIG.onopen == "function" && window.DWFCHATCONFIG.onopen();
 					},
 					onmessage(n) {
 						let r = JSON.parse(n.data);
-						s.value = !1, e.reasoning += r.reasoning_content, e.content += r.content, e.duration = 20, l.value = !1, s.value = !1;
+						c.value = !1, e.reasoning += r.reasoning_content, e.content += r.content, e.duration = 20, u.value = !1, c.value = !1, window.DWFCHATCONFIG.onmessage && typeof window.DWFCHATCONFIG.onmessage == "function" && window.DWFCHATCONFIG.onmessage();
 					},
-					onclose() {},
+					onclose() {
+						window.DWFCHATCONFIG.onclose && typeof window.DWFCHATCONFIG.onclose == "function" && window.DWFCHATCONFIG.onclose();
+					},
 					onerror(e) {
-						P(e);
+						F(e), window.DWFCHATCONFIG.onerror && typeof window.DWFCHATCONFIG.onerror == "function" && window.DWFCHATCONFIG.onerror();
 					}
-				}), l.value = !1;
+				}), u.value = !1;
 			} catch (e) {
-				e.name === "AbortError" ? (console.log("请求已被中止"), P("请求已被用户中止")) : (console.error("请求错误:", e), P(`请求错误: ${e.message}`), l.value = !1);
+				e.name === "AbortError" ? (console.log("请求已被中止"), F("请求已被用户中止")) : (console.error("请求错误:", e), F(`请求错误: ${e.message}`), u.value = !1);
 			} finally {
-				y = null, l.value = !1;
+				x = null, u.value = !1;
 			}
-		}, I = () => {
+		}, R = () => {
 			window.DWFCHATCONFIG.dwf_ctx.openForm(window.DWFCHATCONFIG.targetClass, window.DWFCHATCONFIG.viewName, { initScript: `return {
       obj: ${window.DWFCHATCONFIG.obj}
-    }` });
+    }` }), d.value = !1;
 		};
 		return (e, n) => {
-			let a = resolveComponent("t-button"), o = resolveComponent("t-avatar"), d = resolveComponent("t-chat-loading"), y = resolveComponent("t-chat-content"), b = resolveComponent("t-chat-reasoning"), k = resolveComponent("t-chat-item"), P = resolveComponent("t-select"), F = resolveComponent("t-tooltip"), R = resolveComponent("t-chat-sender"), z = resolveComponent("t-chat"), B = resolveComponent("t-drawer");
+			let a = resolveComponent("t-button"), s = resolveComponent("t-avatar"), y = resolveComponent("t-chat-loading"), b = resolveComponent("t-chat-content"), x = resolveComponent("t-chat-reasoning"), A = resolveComponent("t-chat-item"), F = resolveComponent("t-select"), I = resolveComponent("t-tooltip"), z = resolveComponent("t-chat-sender"), B = resolveComponent("t-chat"), m7 = resolveComponent("t-drawer");
 			return openBlock(), createElementBlock(Fragment, null, [createElementVNode("div", _hoisted_1, [createVNode(a, {
 				shape: "circle",
 				theme: "primary",
 				size: "large",
-				onClick: n[0] ||= (e) => u.value = !0,
+				onClick: n[0] ||= (e) => d.value = !0,
 				id: "DWFRobot"
 			}, {
 				icon: withCtx(() => [createVNode(unref(animation_1_default))]),
 				_: 1
-			})]), createVNode(B, {
-				visible: u.value,
-				"onUpdate:visible": n[5] ||= (e) => u.value = e,
+			})]), createVNode(m7, {
+				visible: d.value,
+				"onUpdate:visible": n[5] ||= (e) => d.value = e,
 				footer: !1,
 				size: "680px",
 				"close-btn": !0,
+				placement: unref(o),
 				class: "drawer-box"
 			}, {
-				header: withCtx(() => [createVNode(o, {
+				header: withCtx(() => [createVNode(s, {
 					size: "32px",
 					shape: "circle",
 					image: "https://tdesign.gtimg.com/site/chat-avatar.png"
 				}), n[6] ||= createElementVNode("span", { class: "title" }, "Hi, \xA0我是AI", -1)]),
-				default: withCtx(() => [createVNode(z, {
+				default: withCtx(() => [createVNode(B, {
 					layout: "both",
-					"clear-history": A.value.length > 0 && !l.value,
-					onOnAction: x,
-					onClear: j
+					"clear-history": j.value.length > 0 && !u.value,
+					onOnAction: S,
+					onClear: M
 				}, {
 					footer: withCtx(() => [createVNode(a, {
 						theme: "primary",
-						onClick: I
+						onClick: R
 					}, {
 						icon: withCtx(() => [createVNode(unref(add_default$1))]),
 						default: withCtx(() => [n[7] ||= createTextVNode(" 打开表单 ", -1)]),
 						_: 1
-					}), createVNode(R, {
-						modelValue: c.value,
-						"onUpdate:modelValue": n[4] ||= (e) => c.value = e,
-						loading: l.value,
+					}), createVNode(z, {
+						modelValue: l.value,
+						"onUpdate:modelValue": n[4] ||= (e) => l.value = e,
+						loading: u.value,
 						"textarea-props": { placeholder: "请输入消息..." },
-						onStop: M,
-						onSend: N
+						onStop: N,
+						onSend: P
 					}, {
-						prefix: withCtx(() => [createElementVNode("div", _hoisted_3, [createVNode(F, {
-							visible: T.value,
-							"onUpdate:visible": n[3] ||= (e) => T.value = e,
+						prefix: withCtx(() => [createElementVNode("div", _hoisted_3, [createVNode(I, {
+							visible: E.value,
+							"onUpdate:visible": n[3] ||= (e) => E.value = e,
 							content: "切换模型",
 							trigger: "hover"
 						}, {
-							default: withCtx(() => [createVNode(P, {
-								modelValue: C.value,
-								"onUpdate:modelValue": n[1] ||= (e) => C.value = e,
-								options: S,
+							default: withCtx(() => [createVNode(F, {
+								modelValue: w.value,
+								"onUpdate:modelValue": n[1] ||= (e) => w.value = e,
+								options: C,
 								"value-type": "object",
-								onFocus: n[2] ||= (e) => T.value = !1
+								onFocus: n[2] ||= (e) => E.value = !1
 							}, null, 8, ["modelValue"])]),
 							_: 1
 						}, 8, ["visible"]), createVNode(a, {
-							class: normalizeClass(["check-box", { "is-active": E.value }]),
+							class: normalizeClass(["check-box", { "is-active": O.value }]),
 							variant: "text",
-							onClick: O
+							onClick: k
 						}, {
 							default: withCtx(() => [createVNode(unref(system_sum_default)), n[8] ||= createElementVNode("span", null, "深度思考", -1)]),
 							_: 1
 						}, 8, ["class"])])]),
 						_: 1
 					}, 8, ["modelValue", "loading"])]),
-					default: withCtx(() => [(openBlock(!0), createElementBlock(Fragment, null, renderList(A.value, (e, n) => (openBlock(), createBlock(k, {
+					default: withCtx(() => [(openBlock(!0), createElementBlock(Fragment, null, renderList(j.value, (e, n) => (openBlock(), createBlock(A, {
 						key: n,
 						role: e.role,
-						"text-loading": n === 0 && s.value,
+						"text-loading": n === 0 && c.value,
 						content: e.content,
-						variant: w(e.role),
+						variant: T(e.role),
 						reasoning: !1
 					}, {
-						content: withCtx(() => [e.reasoning?.length > 0 ? (openBlock(), createBlock(b, {
+						content: withCtx(() => [e.reasoning?.length > 0 ? (openBlock(), createBlock(x, {
 							key: 0,
 							"expand-icon-placement": "right"
 						}, {
-							header: withCtx(() => [l.value ? (openBlock(), createBlock(d, {
+							header: withCtx(() => [u.value ? (openBlock(), createBlock(y, {
 								key: 0,
 								text: "思考中..."
 							})) : (openBlock(), createElementBlock("div", _hoisted_2, [createVNode(unref(check_circle_default), { style: {
@@ -1709,12 +1711,12 @@ var _hoisted_1 = { class: "chatbot-button" }, _hoisted_2 = {
 								"font-size": "'20px'",
 								"margin-right": "'8px'"
 							} }), createElementVNode("span", null, toDisplayString(e.duration ? `已深度思考(用时${e.duration}秒)` : "已深度思考"), 1)]))]),
-							default: withCtx(() => [createVNode(y, {
+							default: withCtx(() => [createVNode(b, {
 								content: e.reasoning,
 								role: "assistant"
 							}, null, 8, ["content"])]),
 							_: 2
-						}, 1024)) : createCommentVNode("", !0), e.content.length > 0 ? (openBlock(), createBlock(y, {
+						}, 1024)) : createCommentVNode("", !0), e.content.length > 0 ? (openBlock(), createBlock(b, {
 							key: 1,
 							content: e.content
 						}, null, 8, ["content"])) : createCommentVNode("", !0)]),
@@ -1728,7 +1730,7 @@ var _hoisted_1 = { class: "chatbot-button" }, _hoisted_2 = {
 					_: 1
 				}, 8, ["clear-history"])]),
 				_: 1
-			}, 8, ["visible"])], 64);
+			}, 8, ["visible", "placement"])], 64);
 		};
 	}
 };
@@ -73651,7 +73653,11 @@ window.DWFCHATCONFIG = {
 	viewName: "",
 	obj: {}
 };
-function initChatWidget(e) {
+function initChatWidget(e = {
+	apiUrl: "",
+	title: "",
+	placement: "right"
+}) {
 	let n = createApp(App_default, e);
 	n.use(index).use(index$1);
 	let r = document.createElement("div");
