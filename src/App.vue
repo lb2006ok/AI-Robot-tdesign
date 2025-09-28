@@ -6,7 +6,7 @@
       </template>
     </t-button>
   </div>
-  <t-drawer v-model:visible="visible" :footer="false" size="680px" :close-btn="true" class="drawer-box">
+  <t-drawer v-model:visible="visible" :footer="false" size="680px" :close-btn="true" :placement="placement" class="drawer-box">
     <template #header>
       <t-avatar size="32px" shape="circle" image="https://tdesign.gtimg.com/site/chat-avatar.png"></t-avatar>
       <span class="title">Hi, &nbsp;我是AI</span>
@@ -91,8 +91,8 @@ import {ref, toRefs, defineProps, getCurrentInstance} from 'vue';
 import {SystemSumIcon, Animation1Icon, CheckCircleIcon, AddIcon} from 'tdesign-icons-vue-next';
 import {fetchEventSource} from '@microsoft/fetch-event-source';
 
-const props = defineProps(['apiUrl', 'title', 'obj', 'form'])
-const {apiUrl, title} = toRefs(props);
+const props = defineProps(['apiUrl', 'title', 'placement'])
+const {apiUrl, title, placement} = toRefs(props);
 const fetchCancel = ref(null);
 const loading = ref(false);
 const inputValue = ref('');
@@ -188,6 +188,10 @@ app.appContext.config.globalProperties.openRobot = (config) => {
   window.DWFCHATCONFIG.viewName = config.viewName;
   window.DWFCHATCONFIG.obj = config.obj;
   window.DWFCHATCONFIG.dwf_ctx = config.dwf_ctx;
+  window.DWFCHATCONFIG.onopen = config.onopen;
+  window.DWFCHATCONFIG.onmessage = config.onmessage;
+  window.DWFCHATCONFIG.onclose = config.onclose;
+  window.DWFCHATCONFIG.onerror = config.onerror;
   visible.value = true;
 };
 
@@ -289,6 +293,7 @@ const handleData = async () => {
         // } else {
         //   throw new RetriableError();
         // }
+        window.DWFCHATCONFIG.onopen && typeof window.DWFCHATCONFIG.onopen === 'function' ? window.DWFCHATCONFIG.onopen() : void 0;
       },
       onmessage(result) {
         let data = JSON.parse(result.data);
@@ -308,14 +313,17 @@ const handleData = async () => {
         // if (msg.event === 'FatalError') {
         //   throw addEventLog(msg.data);
         // }
+        window.DWFCHATCONFIG.onmessage && typeof window.DWFCHATCONFIG.onmessage === 'function' ? window.DWFCHATCONFIG.onmessage() : void 0;
       },
       onclose() {
         // lastItem.content += '<t-button theme="primary"><template #icon><add-icon /></template>打开表单</t-button>';
         // if the server closes the connection unexpectedly, retry:
         // throw new RetriableError();
+        window.DWFCHATCONFIG.onclose && typeof window.DWFCHATCONFIG.onclose === 'function' ? window.DWFCHATCONFIG.onclose() : void 0;
       },
       onerror(err) {
         addEventLog(err);
+        window.DWFCHATCONFIG.onerror && typeof window.DWFCHATCONFIG.onerror === 'function' ? window.DWFCHATCONFIG.onerror() : void 0;
       }
     });
     // 如果循环正常结束，也移除生成指示器
@@ -347,6 +355,7 @@ const openForm = () => {
       obj: ${window.DWFCHATCONFIG.obj}
     }`
   })
+  visible.value = false;
 }
 </script>
 <style lang="less">

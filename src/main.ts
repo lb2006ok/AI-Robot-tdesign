@@ -12,7 +12,11 @@ import TDesignChat from '@tdesign-vue-next/chat'; // 引入chat组件
 // app.use(TDesign).use(TDesignChat).mount('#app');
 // app.openRobot = app.config.globalProperties.openRobot;
 // app.openRobot({});
-function initChatWidget(config: any) {
+function initChatWidget(config: any = {
+    apiUrl: '',
+    title: '',
+    placement: 'right'
+}) {
     const app = createApp(App, config);
     app.use(TDesign).use(TDesignChat)
     // 挂载到指定的DOM元素
@@ -25,7 +29,6 @@ function initChatWidget(config: any) {
         openRobot: app.config.globalProperties.openRobot,
     };
 }
-
 export default {
     initChatWidget
 };
